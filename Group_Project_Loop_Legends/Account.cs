@@ -13,5 +13,16 @@ namespace Group_Project_Loop_Legends
         private string _currency;
         private string _accountName;
         private string _userName;
+        public Account(double balance, string currency, string accountName, string userName)
+        {
+            this._balance = balance;
+            this._currency = currency;
+            this._accountName = accountName;
+            this._userName = userName;
+        }
+        public void PrintAccounts()
+        {
+            Console.WriteLine($"{_accountName}\t{_balance}\t{_currency}");
+        }
     }
 }
