@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,161 +9,168 @@ namespace Group_Project_Loop_Legends
 {
     internal class CurrencyConverter
     {
-        private static double _sEK = 1;
-        private static double _uSD = 0.096;
-        private static double _eURO = 0.088;
-        private static double _gBP = 0.076;
-        private static double _jPY = 14.31;
+        private static double _sekRate = 1;
+        private static double _usdRate = 0.096;
+        private static double _euroRate = 0.088;
+        private static double _gbpRate = 0.076;
+        private static double _jpyRate = 14.31;
 
-        public static double ConvertCurrency(Account account)
+        public static void ConvertCurrency(Account account)
         {
             double baseValue = 0;
 
             switch (account.Currency)
             {
                 case "SEK":
-                    baseValue = account.Balance * _sEK;
+                    baseValue = account.Balance / _sekRate;
                     break;
                 case "USD":
-                    baseValue = account.Balance * _uSD;
+                    baseValue = account.Balance / _usdRate;
                     break;
                 case "EURO":
-                    baseValue = account.Balance * _eURO;
+                    baseValue = account.Balance / _euroRate;
                     break;
                 case "GBP":
-                    baseValue = account.Balance * _gBP;
+                    baseValue = account.Balance / _gbpRate;
                     break;
                 case "JPY":
-                    baseValue = account.Balance * _jPY;
+                    baseValue = account.Balance / _jpyRate;
                     break;
                 default:
                     throw new ArgumentException($"Unsupported currency: {account.Currency}");
             }
+
             Console.Clear();
             Console.WriteLine("What currency would you like to convert to?");
             Console.WriteLine("\n     SEK\n     USD\n     EURO\n     GBP\n     JPY\n");
-            int y = 2;
-            Console.SetCursorPosition(0, y);
+
+            int cursorPosition = 2;
+
+            Console.SetCursorPosition(0, cursorPosition);
             Console.CursorVisible = false;
             Console.Write("-->");
             ConsoleKeyInfo navigator;
             navigator = Console.ReadKey();
+
             while (navigator.Key != ConsoleKey.Enter)
             {
                 navigator = Console.ReadKey();
-                Console.SetCursorPosition(0, y);
+                Console.SetCursorPosition(0, cursorPosition);
                 Console.Write("   ");
-                if (navigator.Key == ConsoleKey.UpArrow && y > 2)
+
+                if (navigator.Key == ConsoleKey.UpArrow && cursorPosition > 2)
                 {
-                    y--;
+                    cursorPosition--;
                 }
-                else if (navigator.Key == ConsoleKey.DownArrow && y < 6)
+
+                else if (navigator.Key == ConsoleKey.DownArrow && cursorPosition < 6)
                 {
-                    y++;
+                    cursorPosition++;
                 }
-                Console.SetCursorPosition(0, y);
+
+                Console.SetCursorPosition(0, cursorPosition);
                 Console.Write("-->");
             }
 
             Console.Clear();
 
-            switch (y)
+            switch (cursorPosition)  // Not certain if this method should return a value or balance should be set inside method. /DJ
             {
                 case 2:
-                    Console.WriteLine("SEK");
-                    return baseValue * _sEK;
-                    
+                    account.Currency = "SEK";
+                    /*return*/ account.Balance = baseValue * _sekRate;
+                    break;
                 case 3:
-                    Console.WriteLine("USD");
-                    return baseValue * _uSD;
-                    
+                    account.Currency = "USD";
+                    /*return*/ account.Balance = baseValue * _usdRate;
+                    break;
                 case 4:
-                    Console.WriteLine("Euro");
-                    return baseValue * _eURO;
-                    
+                    account.Currency = "EURO";
+                    /*return*/ account.Balance = baseValue * _euroRate;
+                    break;
                 case 5:
-                    Console.WriteLine("GBP");
-                    return baseValue * _gBP;
-                    
+                    account.Currency = "GBP";
+                    /*return*/ account.Balance = baseValue * _gbpRate;
+                    break;
                 case 6:
-                    Console.WriteLine("JPY");
-                    return baseValue * _jPY;
-
+                    account.Currency = "JPY";
+                    /*return*/ account.Balance = baseValue * _jpyRate;
+                    break;
                 default:
-                    throw new ArgumentException($"Menu option {y} not available");
+                    throw new ArgumentException($"Menu option {cursorPosition} not available");
             }
         }
 
-        public static double ConvertCurrency(Account transferFrom, Account transferTo)
+        public static double ConvertCurrency(Account currentAccount, Account recievingAccount, double amount)
         {
             double baseValue = 0;
 
-            switch (transferFrom.Currency)
+            switch (currentAccount.Currency)
             {
                 case "SEK":
-                    baseValue = transferFrom.Balance * _sEK;
+                    baseValue = amount / _sekRate;
                     break;
                 case "USD":
-                    baseValue = transferFrom.Balance * _uSD;
+                    baseValue = amount / _usdRate;
                     break;
                 case "EURO":
-                    baseValue = transferFrom.Balance * _eURO;
+                    baseValue = amount / _euroRate;
                     break;
                 case "GBP":
-                    baseValue = transferFrom.Balance * _gBP;
+                    baseValue = amount / _gbpRate;
                     break;
                 case "JPY":
-                    baseValue = transferFrom.Balance * _jPY;
+                    baseValue = amount / _jpyRate;
                     break;
                 default:
-                    throw new ArgumentException($"Unsupported currency: {transferFrom.Currency}");
+                    throw new ArgumentException($"Unsupported currency: {currentAccount.Currency}");
             }
             
-            switch (transferTo.Currency)
+            switch (recievingAccount.Currency)
             {
                 case "SEK":
-                    return baseValue * _sEK;
+                    return baseValue * _sekRate;
               
                 case "USD":
-                    return baseValue * _uSD;
+                    return baseValue * _usdRate;
                     
                 case "EURO":
-                    return baseValue * _eURO;
+                    return baseValue * _euroRate;
                     
                 case "GBP":
-                    return baseValue * _gBP;
+                    return baseValue * _gbpRate;
                     
                 case "JPY":
-                    return baseValue * _jPY;
+                    return baseValue * _jpyRate;
 
                 default:
-                    throw new ArgumentException($"Unsupported currency: {transferTo.Currency}");
+                    throw new ArgumentException($"Unsupported currency: {recievingAccount.Currency}");
             }
         }
-        public double SEK
+        public double SEKRate
         {
-            get { return _sEK; }
-            set { _sEK = value;  }
+            get { return _sekRate; }
+            set { _sekRate = value;  }
         }
-        public double USD
+        public double USDRate
         {
-            get { return _uSD; }
-            set { _uSD = value;  }
+            get { return _usdRate; }
+            set { _usdRate = value;  }
         }
-        public double EURO
+        public double EuroRate
         {
-            get { return _eURO; }
-            set { _eURO = value;  }
+            get { return _euroRate; }
+            set { _euroRate = value;  }
         }
-        public double GBP
+        public double GBPRate
         {
-            get { return _gBP; }
-            set { _gBP = value;  }
+            get { return _gbpRate; }
+            set { _gbpRate = value;  }
         }
-        public double JPY
+        public double JPYRate
         {
-            get { return _jPY; }
-            set { _jPY = value;  }
+            get { return _jpyRate; }
+            set { _jpyRate = value;  }
         }
     }
 }
