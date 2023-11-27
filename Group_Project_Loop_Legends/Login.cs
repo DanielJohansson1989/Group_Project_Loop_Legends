@@ -42,11 +42,71 @@ namespace Group_Project_Loop_Legends
 
             if (y == 4) // Log in Admin
             {
+                for (int i = 3; i > 0;)
+                {
+                    Console.Clear();
+                    Console.Write("Username: ");
+                    string username = Console.ReadLine();
+                    Console.Write("Password: ");
+                    string password = Console.ReadLine();
 
+                    Admin uCheck = adminList.Find(e => e._name == username);
+                    
+                    if (uCheck == null)
+                    {
+                        Console.WriteLine("Username and password did not match . . .");
+                        i--;
+                        Console.WriteLine($"{i} tries left");
+                        Console.ReadKey();
+                    }
+                    else if (uCheck._password == password)
+                    {
+                        Console.WriteLine("Login successful . . .");
+                        break;
+                        //Send to admin menu method
+                    }
+                    else
+                    {
+                        Console.WriteLine("Username and password did not match . . .");
+                        i--;
+                        Console.WriteLine($"{i} tries left");
+                        Console.ReadKey();
+                    }                    
+                }
             }
             else if (y == 5) // Log in Customer
             {
+                for (int i = 3; i > 0;)
+                {
+                    Console.Clear();
+                    Console.Write("Username: ");
+                    string username = Console.ReadLine();
+                    Console.Write("Password: ");
+                    string password = Console.ReadLine();
 
+                    Customer uCheck = customerList.Find(e => e._name == username);
+
+                    if (uCheck == null)
+                    {
+                        Console.WriteLine("Username and password did not match . . .");
+                        i--;
+                        Console.WriteLine($"{i} tries left");
+                        Console.ReadKey();
+                    }
+                    else if (uCheck._password == password)
+                    {
+                        Console.WriteLine("Login successful . . .");
+                        break;
+                        //Send to customer menu method
+                    }
+                    else
+                    {
+                        Console.WriteLine("Username and password did not match . . .");
+                        i--;
+                        Console.WriteLine($"{i} tries left");
+                        Console.ReadKey();
+                    }
+                }
             }
         }
     }
