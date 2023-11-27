@@ -23,7 +23,7 @@
             c1.CreateNewAccount(c1a1);
             c1.CreateNewAccount(c1a2);
 
-            User.LogIn(customerList, adminList);
+            Login.LogIn(customerList, adminList);
 
             Console.ReadLine();
         }
