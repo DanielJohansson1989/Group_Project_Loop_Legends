@@ -42,11 +42,58 @@ namespace Group_Project_Loop_Legends
 
             if (y == 4) // Log in Admin
             {
+                for (int i = 3; i > 0;)
+                {
+                    Console.Clear();
+                    Console.Write("Username: ");
+                    string username = Console.ReadLine();
+                    Console.Write("Password: ");
+                    string password = Console.ReadLine();
 
+                    Admin uCheck = adminList.Find(e => e._name == username);
+                    
+                    if (uCheck == null || uCheck._password != password)
+                    {
+                        Console.WriteLine("Invalid username or password. Please try again.");
+                        i--;
+                        Console.WriteLine($"{i} tries left");
+                        Console.ReadKey();
+                    }
+                    else
+                    {
+                        Console.WriteLine("Login successful . . .");
+                        //Admin.Menu();   //This will work if menu method is set to static
+                        break;
+                    }                                       
+                }
             }
             else if (y == 5) // Log in Customer
             {
-                   
+                for (int i = 3; i > 0;)
+                {
+                    Console.Clear();
+                    Console.Write("Username: ");
+                    string username = Console.ReadLine();
+                    Console.Write("Password: ");
+                    string password = Console.ReadLine();
+
+                    Customer uCheck = customerList.Find(e => e._name == username);
+
+                    if (uCheck == null || uCheck._password != password)
+                    {
+                        Console.WriteLine("Username and password did not match . . .");
+                        i--;
+                        Console.WriteLine($"{i} tries left");
+                        Console.ReadKey();
+                    }
+                    else
+                    {
+                        Console.WriteLine("Login successful . . .");
+                        //Customer.Menu(); // This will work if menu method is set to static
+                        break;
+                    }
+                    
+                }
             }
         }
     }
