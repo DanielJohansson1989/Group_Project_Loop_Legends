@@ -24,5 +24,11 @@ namespace Group_Project_Loop_Legends
         {
             Console.WriteLine($"{_accountName}\t{_balance}\t{_currency}");
         }
+
+        public string Currency
+        {
+            get { return _currency; }
+            set { _currency = value; }
+        }
     }
 }
