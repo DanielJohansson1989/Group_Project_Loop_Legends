@@ -30,5 +30,11 @@ namespace Group_Project_Loop_Legends
             get { return _currency; }
             set { _currency = value; }
         }
+
+        public double Balance
+        {
+            get { return _balance; }
+            set { _balance = value; }
+        }
     }
 }
