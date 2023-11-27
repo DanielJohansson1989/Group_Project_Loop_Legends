@@ -52,26 +52,19 @@ namespace Group_Project_Loop_Legends
 
                     Admin uCheck = adminList.Find(e => e._name == username);
                     
-                    if (uCheck == null)
+                    if (uCheck == null || uCheck._password != password)
                     {
-                        Console.WriteLine("Username and password did not match . . .");
+                        Console.WriteLine("Invalid username or password. Please try again.");
                         i--;
                         Console.WriteLine($"{i} tries left");
                         Console.ReadKey();
-                    }
-                    else if (uCheck._password == password)
-                    {
-                        Console.WriteLine("Login successful . . .");
-                        break;
-                        //Send to admin menu method
                     }
                     else
                     {
-                        Console.WriteLine("Username and password did not match . . .");
-                        i--;
-                        Console.WriteLine($"{i} tries left");
-                        Console.ReadKey();
-                    }                    
+                        Console.WriteLine("Login successful . . .");
+                        //Admin.Menu();   //This will work if menu method is set to static
+                        break;
+                    }                                       
                 }
             }
             else if (y == 5) // Log in Customer
@@ -86,26 +79,20 @@ namespace Group_Project_Loop_Legends
 
                     Customer uCheck = customerList.Find(e => e._name == username);
 
-                    if (uCheck == null)
+                    if (uCheck == null || uCheck._password != password)
                     {
                         Console.WriteLine("Username and password did not match . . .");
                         i--;
                         Console.WriteLine($"{i} tries left");
                         Console.ReadKey();
-                    }
-                    else if (uCheck._password == password)
-                    {
-                        Console.WriteLine("Login successful . . .");
-                        break;
-                        //Send to customer menu method
                     }
                     else
                     {
-                        Console.WriteLine("Username and password did not match . . .");
-                        i--;
-                        Console.WriteLine($"{i} tries left");
-                        Console.ReadKey();
+                        Console.WriteLine("Login successful . . .");
+                        //Customer.Menu(); // This will work if menu method is set to static
+                        break;
                     }
+                    
                 }
             }
         }
