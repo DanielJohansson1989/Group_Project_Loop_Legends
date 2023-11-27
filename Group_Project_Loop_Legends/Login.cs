@@ -89,8 +89,8 @@ namespace Group_Project_Loop_Legends
                     else
                     {
                         Console.WriteLine("Login successful . . .");
-                        //Customer.Menu(); // This will work if menu method is set to static
-                        break;
+                        uCheck.Menu(); // This will work if menu method is set to static- 
+                        break;//It works if I use uCheck.Menu() is that correct?//AH
                     }
                     
                 }
