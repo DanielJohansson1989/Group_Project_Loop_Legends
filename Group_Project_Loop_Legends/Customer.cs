@@ -26,8 +26,7 @@ namespace Group_Project_Loop_Legends
             Console.WriteLine("    3.Show Account History");
             Console.WriteLine("    4.Transfer Money");
             Console.WriteLine("    5.Loan Money");
-            Console.WriteLine("    6.Convert Currency");
-            Console.WriteLine("    7.Log Out ");
+            Console.WriteLine("    6.Log Out ");
 
             int cursorPos = 1;
 
@@ -49,7 +48,7 @@ namespace Group_Project_Loop_Legends
                     cursorPos--;
                 }
 
-                else if (navigator.Key == ConsoleKey.DownArrow && cursorPos < 7)
+                else if (navigator.Key == ConsoleKey.DownArrow && cursorPos < 6)
                 {
                     cursorPos++;
                 }
@@ -75,11 +74,8 @@ namespace Group_Project_Loop_Legends
                     break;
                 case 5:
                     //LoanMoney();
-                    break;
+                    break;              
                 case 6:
-                    //ConvertCurrency();
-                    break;
-                case 7:
                     LogOut();
                     break;
                 default:
@@ -109,10 +105,10 @@ namespace Group_Project_Loop_Legends
         {
             
         }
-        public static void LogOut() //Should we have a LogOut Method? // AH
+        public static void LogOut() //Should we have a LogOut Method? // AH.
         {
             Console.WriteLine("Logging out...");
-            Thread.Sleep(2500);
+            Thread.Sleep(1500);
             Console.Clear();
             Login.LogIn();
         }
