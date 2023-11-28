@@ -4,6 +4,7 @@
     {
         static void Main(string[] args)
         {
+            //Hej.
             // Creating base users and accounts for initial use and testing
             Customer c1 = new Customer("Anton", "passwordA", 0);
             Customer c2 = new Customer("Daniel", "passwordD", 0);
