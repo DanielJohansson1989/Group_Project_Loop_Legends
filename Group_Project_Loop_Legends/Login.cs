@@ -29,7 +29,13 @@ namespace Group_Project_Loop_Legends
 
             c1.CreateNewAccount(c1a1);
             c1.CreateNewAccount(c1a2);
-            //////////////////////////////////////////////////7
+
+            Account c2a1 = new Account(1000000, "SEK", "Daniels Lönekonto", "Daniel");
+            Account c2a2 = new Account(40, "GBP", "Daniels Sparkonto", "Daniel");
+
+            c2.CreateNewAccount(c2a1);
+            c2.CreateNewAccount(c2a2);
+            /////////////////////////////////////////////////
 
             Console.Clear();
             Console.WriteLine("Welcome to the Loop Legends Bank\n");
