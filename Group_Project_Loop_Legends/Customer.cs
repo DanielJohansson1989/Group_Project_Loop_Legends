@@ -70,7 +70,7 @@ namespace Group_Project_Loop_Legends
                     //AccountHistory();
                     break;
                 case 4:
-                    TransferMoney(_accountList);
+                    TransferMoney(_accountList, _historyList);
                     break;
                 case 5:
                     //LoanMoney();
@@ -105,9 +105,9 @@ namespace Group_Project_Loop_Legends
             Console.CursorVisible = false;
             Console.Write("-->");
             ConsoleKeyInfo navigator;
-            navigator = Console.ReadKey();
+            //navigator = Console.ReadKey();
 
-            while (navigator.Key != ConsoleKey.Enter)
+            do
             {
                 navigator = Console.ReadKey();
                 Console.SetCursorPosition(0, cursorPosition);
@@ -125,7 +125,7 @@ namespace Group_Project_Loop_Legends
 
                 Console.SetCursorPosition(0, cursorPosition);
                 Console.Write("-->");
-            }
+            } while (navigator.Key != ConsoleKey.Enter);
             Console.Clear();
 
             string currency;
@@ -153,6 +153,7 @@ namespace Group_Project_Loop_Legends
             Account newAccount = new Account(0, currency, accountName, _name);
 
             _accountList.Add(newAccount);
+            Menu();
         }
         public void SeeAccounts()
         {
@@ -165,7 +166,7 @@ namespace Group_Project_Loop_Legends
             Console.ReadLine();
             Menu();
         }
-        public static void TransferMoney(List<Account> accounts)
+        public void TransferMoney(List<Account> accounts, List<string> historyList)
         {
             Console.Clear();
             Console.WriteLine("     Transfer money between own accounts\n     Transfer money to extern accounts\n");
@@ -175,9 +176,9 @@ namespace Group_Project_Loop_Legends
             Console.CursorVisible = false;
             Console.Write("-->");
             ConsoleKeyInfo navigator;
-            navigator = Console.ReadKey();
+            //navigator = Console.ReadKey();
 
-            while (navigator.Key != ConsoleKey.Enter)
+            do
             {
                 navigator = Console.ReadKey();
                 Console.SetCursorPosition(0, cursorPosition);
@@ -195,7 +196,7 @@ namespace Group_Project_Loop_Legends
 
                 Console.SetCursorPosition(0, cursorPosition);
                 Console.Write("-->");
-            }
+            } while (navigator.Key != ConsoleKey.Enter);
             Console.Clear();
 
             switch (cursorPosition)
@@ -203,7 +204,7 @@ namespace Group_Project_Loop_Legends
                 case 0:   // Transfer between own accounts
 
                     // Selecting account to transfer from
-                    Console.WriteLine("Select an account to transfer money from");
+                    Console.WriteLine("Select an account to transfer money FROM");
                     foreach (Account account in accounts)
                     {
                         Console.WriteLine($"     {account.AccountName}");
@@ -214,9 +215,9 @@ namespace Group_Project_Loop_Legends
                     Console.CursorVisible = false;
                     Console.Write("-->");
 
-                    navigator = Console.ReadKey();
+                    //navigator = Console.ReadKey();
 
-                    while (navigator.Key != ConsoleKey.Enter)
+                    do
                     {
                         navigator = Console.ReadKey();
                         Console.SetCursorPosition(0, fromAccountPosition);
@@ -234,11 +235,11 @@ namespace Group_Project_Loop_Legends
 
                         Console.SetCursorPosition(0, fromAccountPosition);
                         Console.Write("-->");
-                    }
+                    } while (navigator.Key != ConsoleKey.Enter);
                     Console.Clear();
 
                     // Selecting accounts to transfer to
-                    Console.WriteLine("Select an account to transfer money to");
+                    Console.WriteLine("Select an account to transfer money TO");
                     foreach (Account account in accounts)
                     {
                         Console.WriteLine($"     {account.AccountName}");
@@ -249,9 +250,9 @@ namespace Group_Project_Loop_Legends
                     Console.CursorVisible = false;
                     Console.Write("-->");
 
-                    navigator = Console.ReadKey();
+                    //navigator = Console.ReadKey();
 
-                    while (navigator.Key != ConsoleKey.Enter)
+                    do
                     {
                         navigator = Console.ReadKey();
                         Console.SetCursorPosition(0, toAccountPosition);
@@ -269,7 +270,7 @@ namespace Group_Project_Loop_Legends
 
                         Console.SetCursorPosition(0, toAccountPosition);
                         Console.Write("-->");
-                    }
+                    } while (navigator.Key != ConsoleKey.Enter);
                     Console.Clear();
 
                     Console.WriteLine("How much money would you like to transfer?");
@@ -279,15 +280,18 @@ namespace Group_Project_Loop_Legends
 
                     double amountInCorrectCurrency = CurrencyConverter.ConvertCurrency(accounts[fromAccountPosition - 1], accounts[toAccountPosition - 1], amountToTransfer);
 
-                    accounts[fromAccountPosition - 1].Balance -= amountToTransfer;
+                    accounts[fromAccountPosition - 1].Balance -= amountToTransfer; //OBS Stop user from wthdrawing more than available balance!!!
                     accounts[toAccountPosition - 1].Balance += amountInCorrectCurrency;
 
-                    Console.WriteLine($"{accounts[fromAccountPosition - 1].Balance} \n{accounts[toAccountPosition - 1].Balance}");
+                    historyList.Add($"{amountToTransfer} {accounts[fromAccountPosition - 1].Currency} withdrawn from {accounts[fromAccountPosition - 1].AccountName}");
+                    historyList.Add($"{amountInCorrectCurrency} {accounts[toAccountPosition - 1].Currency} deposited to {accounts[toAccountPosition - 1].AccountName}");
                     break;
 
                 case 1: // Transfer between other users accounts
+                    Console.WriteLine("Not implemented...\nPress any button to exit"); Console.ReadKey();
                     break;
             }
+            Menu();
         }
         public static void LoanMoney(List<Account> accountList)
         {
