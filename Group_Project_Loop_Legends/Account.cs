@@ -36,5 +36,9 @@ namespace Group_Project_Loop_Legends
             get { return _balance; }
             set { _balance = value; }
         }
+        public string AccountName
+        {
+            get { return _accountName; }
+        }
     }
 }
