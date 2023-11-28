@@ -16,10 +16,6 @@ namespace Group_Project_Loop_Legends
         {
 
         }
-        public static void CreateNewCustomer()
-        {
-
-        }
         public override void Menu()
         {
 
