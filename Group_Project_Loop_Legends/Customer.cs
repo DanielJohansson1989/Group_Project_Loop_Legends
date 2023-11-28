@@ -157,11 +157,13 @@ namespace Group_Project_Loop_Legends
         public void SeeAccounts()
         {
             Console.WriteLine("Kontonamn\t\tSaldo\tValuta\t\n");
-            Console.ReadKey();
             foreach (Account item in _accountList)
             {
                 item.PrintAccounts();
             }
+            Console.WriteLine("\nPress Enter to return to Menu");
+            Console.ReadLine();
+            Menu();
         }
         public static void TransferMoney()
         {
@@ -169,7 +171,11 @@ namespace Group_Project_Loop_Legends
         }
         public static void LoanMoney(List<Account> accountList)
         {
-            
+            // Must convert all assets on all accounts of the customer to base currency.
+            // Create new method for this in CurrencyConverter class.
+            // Then present how much SEK (only SEK?) they can loan (only 5 times of balance MINUS(!) credit something)
+            // Then they can choose which account they want to put it it.
+            // Then convert to the currency of that account.
         }
         public static void LogOut() //Should we have a LogOut Method? // AH.
         {

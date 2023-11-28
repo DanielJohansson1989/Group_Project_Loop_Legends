@@ -13,6 +13,7 @@ namespace Group_Project_Loop_Legends
 
         public void CreateInitialUsers ()
         {
+
             Customer c1 = new Customer("Anton", "passwordA");
             Customer c2 = new Customer("Daniel", "passwordD");
             Customer c3 = new Customer("John", "passwordJ");
