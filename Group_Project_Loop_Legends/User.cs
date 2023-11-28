@@ -8,15 +8,14 @@ namespace Group_Project_Loop_Legends
 {
     internal class User
     {
-        public string _name;
-        public string _password;
-        private int _logInTries;
+        public string _name {  get; set; }
+        public string _password { get; set; }
+        
         // private string _loggedInUser; // Include or not? / JP
-        public User(string name, string password, int logInTries)
+        public User(string name, string password)
         {
             this._name = name;
-            this._password = password;
-            this._logInTries = logInTries;
+            this._password = password;            
         }
        
 

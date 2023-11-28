@@ -8,7 +8,7 @@ namespace Group_Project_Loop_Legends
 {
     internal class Admin : User
     {
-        public Admin(string _name, string _password, int _logInTries) : base(_name, _password, _logInTries)
+        public Admin(string _name, string _password) : base(_name, _password)
         {
             
         }

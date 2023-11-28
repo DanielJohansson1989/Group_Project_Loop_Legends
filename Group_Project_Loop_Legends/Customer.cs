@@ -13,7 +13,7 @@ namespace Group_Project_Loop_Legends
         private List<Account> _accountList = new List<Account>();
         private List<string> _historyList = new List<string>();
         private double _credit = 0;
-        public Customer(string _name, string _password, int _logInTries) : base(_name, _password, _logInTries)
+        public Customer(string _name, string _password) : base(_name, _password)
         {
         }
         public override void Menu()
