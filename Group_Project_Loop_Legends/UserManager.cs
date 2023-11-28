@@ -24,25 +24,25 @@ namespace Group_Project_Loop_Legends
             customerList.Add(c3);
             customerList.Add(c4);
 
-            Account c1a1 = new Account(3000, "SEK", "Antons Lönekonto", "Anton");
-            Account c1a2 = new Account(50000, "USD", "Antons Sparkonto", "Anton");
+            Account c1a1 = new Account(100, "SEK", "Antons Lönekonto", "Anton");
+            Account c1a2 = new Account(100, "USD", "Antons Sparkonto", "Anton");
 
             c1.CreateNewAccount(c1a1);
             c1.CreateNewAccount(c1a2);
 
-            Account c2a1 = new Account(1000000, "SEK", "Daniels Lönekonto", "Daniel");
-            Account c2a2 = new Account(40, "GBP", "Daniels Sparkonto", "Daniel");
+            Account c2a1 = new Account(200, "SEK", "Daniels Lönekonto", "Daniel");
+            Account c2a2 = new Account(200, "GBP", "Daniels Sparkonto", "Daniel");
 
             c2.CreateNewAccount(c2a1);
             c2.CreateNewAccount(c2a2);
 
-            Account c3a1 = new Account(1500000, "SEK", "Johns Lönekonto", "John");
-            Account c3a2 = new Account(6000, "USD", "Johns Sparkonto", "John");
+            Account c3a1 = new Account(300, "SEK", "Johns Lönekonto", "John");
+            Account c3a2 = new Account(300, "USD", "Johns Sparkonto", "John");
 
             c3.CreateNewAccount(c3a1);
             c3.CreateNewAccount(c3a2);
 
-            Account c4a1 = new Account(300000, "SEK", "Rasmus Lönekonto", "Rasmus");
+            Account c4a1 = new Account(400, "SEK", "Rasmus Lönekonto", "Rasmus");
             Account c4a2 = new Account(400, "JPY", "Rasmus Sparkonto", "Rasmus");
 
             c4.CreateNewAccount(c4a1);

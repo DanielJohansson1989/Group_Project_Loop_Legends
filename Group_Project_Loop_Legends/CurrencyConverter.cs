@@ -151,38 +151,32 @@ namespace Group_Project_Loop_Legends
                     throw new ArgumentException($"Unsupported currency: {receivingAccount.Currency}");
             }
         }
-        public static double LoanMethod(List<Account> accountList)
+        public static double TotalAsset(List<Account> accountList)
         {
-            double baseCurrency = 1;
-            double totalBaseValue = 0;
+            double totalAssetValue = 0;
 
             foreach (Account item in accountList)
             {
                 switch (item.Currency)
                 {
                     case "SEK":
-                        // Convert to base value
-                        // totalBaseValue += the converted value
+                        totalAssetValue +=  item.Balance / _sekRate;
                         break;
 
                     case "USD":
-                        // Convert to base value
-                        // totalBaseValue += the converted value
+                        totalAssetValue += item.Balance / _usdRate;
                         break;
 
                     case "EURO":
-                        // Convert to base value
-                        // totalBaseValue += the converted value
+                        totalAssetValue += item.Balance / _euroRate;
                         break;
 
                     case "GBP":
-                        // Convert to base value
-                        // totalBaseValue += the converted value
+                        totalAssetValue += item.Balance / _gbpRate;
                         break;
 
                     case "JPY":
-                        // Convert to base value
-                        // totalBaseValue += the converted value
+                        totalAssetValue += item.Balance / _jpyRate;
                         break;
 
                     default:
@@ -190,8 +184,7 @@ namespace Group_Project_Loop_Legends
                         break;
                 }
             }
-            // Convert totalBaseValue to SEK
-            return totalBaseValue; // fast det ska vara SEK
+            return totalAssetValue * _sekRate;
         }
         public double SEKRate
         {

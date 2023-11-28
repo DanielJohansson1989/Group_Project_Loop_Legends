@@ -73,7 +73,7 @@ namespace Group_Project_Loop_Legends
                     TransferMoney(_accountList, _historyList);
                     break;
                 case 5:
-                    //LoanMoney();
+                    LoanMoney(_accountList);
                     break;              
                 case 6:
                     LogOut();
@@ -295,13 +295,17 @@ namespace Group_Project_Loop_Legends
         }
         public static void LoanMoney(List<Account> accountList)
         {
-            double totalAssetInSEK = CurrencyConverter.LoanMethod(accountList);
-            Console.WriteLine($"Based on your total assets you can loan up to {totalAssetInSEK} SEK"); 
+            double totalAssetInSEK = CurrencyConverter.TotalAsset(accountList);
+            Console.WriteLine($"Based on your total assets you can loan up to {(totalAssetInSEK/*-_credit... hur ska jag få in inloggad användares credit här*/) * 5} SEK");
+
+
+            Console.ReadLine();
             // Must convert all assets on all accounts of the customer to base currency.
             // Create new method for this in CurrencyConverter class.
             // Then present how much SEK (only SEK?) they can loan (only 5 times of balance MINUS(!) credit something)
             // Then they can choose which account they want to put it it.
-            // Then convert to the currency of that account.
+            // Then convert to the currency of that account and put the money into it.
+            // Then add credit to the customer.
         }
         public static void LogOut() //Should we have a LogOut Method? // AH.
         {
