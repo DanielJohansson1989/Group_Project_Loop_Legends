@@ -114,7 +114,7 @@ namespace Group_Project_Loop_Legends
             Console.WriteLine("Logging out...");
             Thread.Sleep(2500);
             Console.Clear();
-            //Login.LogIn();
+            Login.LogIn();
         }
     }
 }

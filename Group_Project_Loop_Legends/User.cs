@@ -12,7 +12,6 @@ namespace Group_Project_Loop_Legends
         public string _password;
         private int _logInTries;
         // private string _loggedInUser; // Include or not? / JP
-        // Hej
         public User(string name, string password, int logInTries)
         {
             this._name = name;
