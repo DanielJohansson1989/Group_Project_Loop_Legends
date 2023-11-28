@@ -89,6 +89,71 @@ namespace Group_Project_Loop_Legends
         {
             _accountList.Add(newAccount);
         }
+        public void AddAccount()
+        {
+            Console.Clear();
+            Console.Write("Name of the account: ");
+            string accountName = Console.ReadLine();
+
+            Console.Clear();
+            Console.WriteLine("What currency would you like your account to have?");
+            Console.WriteLine("\n     SEK\n     USD\n     EURO\n     GBP\n     JPY\n");
+
+            int cursorPosition = 2;
+
+            Console.SetCursorPosition(0, cursorPosition);
+            Console.CursorVisible = false;
+            Console.Write("-->");
+            ConsoleKeyInfo navigator;
+            navigator = Console.ReadKey();
+
+            while (navigator.Key != ConsoleKey.Enter)
+            {
+                navigator = Console.ReadKey();
+                Console.SetCursorPosition(0, cursorPosition);
+                Console.Write("   ");
+
+                if (navigator.Key == ConsoleKey.UpArrow && cursorPosition > 2)
+                {
+                    cursorPosition--;
+                }
+
+                else if (navigator.Key == ConsoleKey.DownArrow && cursorPosition < 6)
+                {
+                    cursorPosition++;
+                }
+
+                Console.SetCursorPosition(0, cursorPosition);
+                Console.Write("-->");
+            }
+            Console.Clear();
+
+            string currency;
+            switch (cursorPosition)
+            {
+                case 2:
+                    currency = "SEK";
+                    break;
+                case 3:
+                    currency = "USD";
+                    break;
+                case 4:
+                    currency = "EURO";
+                    break;
+                case 5:
+                    currency = "GBP";
+                    break;
+                case 6:
+                    currency = "JPY";
+                    break;
+                default:
+                    throw new ArgumentException($"Menu option {cursorPosition} not available");
+            }
+
+            Account newAccount = new Account(0, currency, accountName, _name);
+
+            _accountList.Add(newAccount);
+        }
         public void SeeAccounts()
         {
             Console.WriteLine("Kontonamn\t\tSaldo\tValuta\t\n");
