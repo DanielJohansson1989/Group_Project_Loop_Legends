@@ -70,7 +70,7 @@ namespace Group_Project_Loop_Legends
                     //AccountHistory();
                     break;
                 case 4:
-                    TransferMoney();
+                    TransferMoney(_accountList);
                     break;
                 case 5:
                     //LoanMoney();
@@ -165,9 +165,131 @@ namespace Group_Project_Loop_Legends
             Console.ReadLine();
             Menu();
         }
-        public static void TransferMoney()
+        public static void TransferMoney(List<Account> accounts)
         {
+            Console.Clear();
+            Console.WriteLine("     Transfer money between own accounts\n     Transfer money to extern accounts\n");
+            int cursorPosition = 0;
 
+            Console.SetCursorPosition(0, cursorPosition);
+            Console.CursorVisible = false;
+            Console.Write("-->");
+            ConsoleKeyInfo navigator;
+            navigator = Console.ReadKey();
+
+            while (navigator.Key != ConsoleKey.Enter)
+            {
+                navigator = Console.ReadKey();
+                Console.SetCursorPosition(0, cursorPosition);
+                Console.Write("   ");
+
+                if (navigator.Key == ConsoleKey.UpArrow && cursorPosition > 0)
+                {
+                    cursorPosition--;
+                }
+
+                else if (navigator.Key == ConsoleKey.DownArrow && cursorPosition < 1)
+                {
+                    cursorPosition++;
+                }
+
+                Console.SetCursorPosition(0, cursorPosition);
+                Console.Write("-->");
+            }
+            Console.Clear();
+
+            switch (cursorPosition)
+            {
+                case 0:   // Transfer between own accounts
+
+                    // Selecting account to transfer from
+                    Console.WriteLine("Select an account to transfer money from");
+                    foreach (Account account in accounts)
+                    {
+                        Console.WriteLine($"     {account.AccountName}");
+                    }
+                    int fromAccountPosition = 1;
+
+                    Console.SetCursorPosition(0, fromAccountPosition);
+                    Console.CursorVisible = false;
+                    Console.Write("-->");
+
+                    navigator = Console.ReadKey();
+
+                    while (navigator.Key != ConsoleKey.Enter)
+                    {
+                        navigator = Console.ReadKey();
+                        Console.SetCursorPosition(0, fromAccountPosition);
+                        Console.Write("   ");
+
+                        if (navigator.Key == ConsoleKey.UpArrow && fromAccountPosition > 1)
+                        {
+                            fromAccountPosition--;
+                        }
+
+                        else if (navigator.Key == ConsoleKey.DownArrow && fromAccountPosition < accounts.Count)
+                        {
+                            fromAccountPosition++;
+                        }
+
+                        Console.SetCursorPosition(0, fromAccountPosition);
+                        Console.Write("-->");
+                    }
+                    Console.Clear();
+
+                    // Selecting accounts to transfer to
+                    Console.WriteLine("Select an account to transfer money to");
+                    foreach (Account account in accounts)
+                    {
+                        Console.WriteLine($"     {account.AccountName}");
+                    }
+                    int toAccountPosition = 0;
+
+                    Console.SetCursorPosition(0, toAccountPosition);
+                    Console.CursorVisible = false;
+                    Console.Write("-->");
+
+                    navigator = Console.ReadKey();
+
+                    while (navigator.Key != ConsoleKey.Enter)
+                    {
+                        navigator = Console.ReadKey();
+                        Console.SetCursorPosition(0, toAccountPosition);
+                        Console.Write("   ");
+
+                        if (navigator.Key == ConsoleKey.UpArrow && toAccountPosition > 0)
+                        {
+                            toAccountPosition--;
+                        }
+
+                        else if (navigator.Key == ConsoleKey.DownArrow && toAccountPosition < accounts.Count - 1)
+                        {
+                            toAccountPosition++;
+                        }
+
+                        Console.SetCursorPosition(0, toAccountPosition);
+                        Console.Write("-->");
+                    }
+                    Console.Clear();
+
+                    Console.WriteLine("How much money would you like to transfer?");
+                    double amountToTransfer;
+
+                    while (!double.TryParse(Console.ReadLine(), out amountToTransfer)) { Console.WriteLine("Incorrect value"); }
+
+                    double amountInCorrectCurrency = CurrencyConverter.ConvertCurrency(accounts[fromAccountPosition], accounts[toAccountPosition], amountToTransfer);
+
+                    accounts[fromAccountPosition - 1].Balance -= amountToTransfer;
+                    accounts[toAccountPosition - 1].Balance += amountInCorrectCurrency;
+
+                    Console.WriteLine($"{accounts[fromAccountPosition - 1].Balance} \n{accounts[toAccountPosition - 1].Balance}");
+
+
+                    break;
+
+                case 1: // Transfer between other users accounts
+                    break;
+            }
         }
         public static void LoanMoney(List<Account> accountList)
         {
