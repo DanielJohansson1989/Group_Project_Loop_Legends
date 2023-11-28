@@ -11,7 +11,6 @@ namespace Group_Project_Loop_Legends
         public string _name {  get; set; }
         public string _password { get; set; }
         
-        // private string _loggedInUser; // Include or not? / JP
         public User(string name, string password)
         {
             this._name = name;

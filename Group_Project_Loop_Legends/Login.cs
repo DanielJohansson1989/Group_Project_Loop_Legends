@@ -8,8 +8,8 @@ namespace Group_Project_Loop_Legends
 {
     internal class Login
     {
-        public static void LogIn(List<Customer> customerList, List<Admin> adminList) // Make LogIn its own class instead of method in User? S in SOLID principles
-        {                       
+        public static void LogIn(List<Customer> customerList, List<Admin> adminList)
+        {
             Console.Clear();
             Console.WriteLine("Welcome to the Loop Legends Bank\n");
             Console.WriteLine("What would you like to log in as? (user arrow keys to navigate, then press Enter)");
