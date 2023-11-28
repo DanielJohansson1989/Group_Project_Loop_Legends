@@ -18,72 +18,75 @@ namespace Group_Project_Loop_Legends
         }
         public override void Menu()
         {
-            Console.Clear();
-            Console.WriteLine($"Welcome, {_name}! Choose an option:");
-   
-            Console.WriteLine("    1.See Your Accounts");
-            Console.WriteLine("    2.Create New Account");
-            Console.WriteLine("    3.Show Account History");
-            Console.WriteLine("    4.Transfer Money");
-            Console.WriteLine("    5.Loan Money");
-            Console.WriteLine("    6.Log Out ");
-
-            int cursorPos = 1;
-
-
-            Console.SetCursorPosition(0, cursorPos);
-            Console.CursorVisible = false;
-            Console.Write("-->");
-            ConsoleKeyInfo navigator;
-            navigator = Console.ReadKey();
-
-            while (navigator.Key != ConsoleKey.Enter)
+            bool isRunning = true;
+            while (isRunning)
             {
-                navigator = Console.ReadKey();
+                Console.Clear();
+                Console.WriteLine($"Welcome, {_name}! Choose an option:");
+
+                Console.WriteLine("    1.See Your Accounts");
+                Console.WriteLine("    2.Create New Account");
+                Console.WriteLine("    3.Show Account History");
+                Console.WriteLine("    4.Transfer Money");
+                Console.WriteLine("    5.Loan Money");
+                Console.WriteLine("    6.Log Out ");
+
+                int cursorPos = 1;
+
+
                 Console.SetCursorPosition(0, cursorPos);
-                Console.Write("   ");
-
-                if (navigator.Key == ConsoleKey.UpArrow && cursorPos > 1)
-                {
-                    cursorPos--;
-                }
-
-                else if (navigator.Key == ConsoleKey.DownArrow && cursorPos < 6)
-                {
-                    cursorPos++;
-                }
-
-                Console.SetCursorPosition(0, cursorPos);
+                Console.CursorVisible = false;
                 Console.Write("-->");
+                ConsoleKeyInfo navigator;
+                navigator = Console.ReadKey();
+
+                while (navigator.Key != ConsoleKey.Enter)
+                {
+                    navigator = Console.ReadKey();
+                    Console.SetCursorPosition(0, cursorPos);
+                    Console.Write("   ");
+
+                    if (navigator.Key == ConsoleKey.UpArrow && cursorPos > 1)
+                    {
+                        cursorPos--;
+                    }
+
+                    else if (navigator.Key == ConsoleKey.DownArrow && cursorPos < 6)
+                    {
+                        cursorPos++;
+                    }
+
+                    Console.SetCursorPosition(0, cursorPos);
+                    Console.Write("-->");
+                }
+
+                Console.Clear();
+                switch (cursorPos)
+                {
+                    case 1:
+                        SeeAccounts(); Console.ReadKey();
+                        break;
+                    case 2:
+                        AddAccount(); Console.ReadKey(); //CreateNewAccount();
+                        break;
+                    case 3:
+                        //AccountHistory();
+                        break;
+                    case 4:
+                        TransferMoney();
+                        break;
+                    case 5:
+                        //LoanMoney();
+                        break;
+                    case 6:
+                        LogOut(); isRunning = false;
+                        break;
+                    default:
+                        throw new ArgumentException($"Menu option {cursorPos} not available");
+
+
+                }
             }
-
-            Console.Clear();
-            switch (cursorPos)
-            {
-                case 1:
-                    SeeAccounts();
-                    break;
-                case 2:
-                    //CreateNewAccount();
-                    break;
-                case 3:
-                    //AccountHistory();
-                    break;
-                case 4:
-                    TransferMoney();
-                    break;
-                case 5:
-                    //LoanMoney();
-                    break;              
-                case 6:
-                    LogOut();
-                    break;
-                default:
-                    throw new ArgumentException($"Menu option {cursorPos} not available");
-
-
-            }
-
         }
         public void CreateNewAccount(Account newAccount)
         {
@@ -175,7 +178,7 @@ namespace Group_Project_Loop_Legends
             Console.WriteLine("Logging out...");
             Thread.Sleep(1500);
             Console.Clear();
-            Login.LogIn();
+            //Login.LogIn();
         }
     }
 }

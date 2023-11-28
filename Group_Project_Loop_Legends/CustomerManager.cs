@@ -45,6 +45,14 @@ namespace Group_Project_Loop_Legends
 
             c4.CreateNewAccount(c4a1);
             c4.CreateNewAccount(c4a2);
+            bool isRunning = true;
+            while (isRunning)
+            {
+                Login.LogIn(customerList);
+            }
+            
+
+            //return customerList;
         }
         public void AddCustomer()
         {
