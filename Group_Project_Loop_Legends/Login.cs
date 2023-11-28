@@ -36,17 +36,17 @@ namespace Group_Project_Loop_Legends
             c2.CreateNewAccount(c2a1);
             c2.CreateNewAccount(c2a2);
 
-            Account c3a1 = new Account(300000, "SEK", "Rasmus Lönekonto", "Rasmus");
-            Account c3a2 = new Account(400, "JPY", "Rasmus Sparkonto", "Rasmus");
+            Account c3a1 = new Account(1500000, "SEK", "Johns Lönekonto", "John");
+            Account c3a2 = new Account(6000, "USD", "Johns Sparkonto", "John");
 
-            c4.CreateNewAccount(c3a1);
-            c4.CreateNewAccount(c3a2);
+            c3.CreateNewAccount(c3a1);
+            c3.CreateNewAccount(c3a2);
 
-            Account c4a1 = new Account(1500000, "SEK", "Johns Lönekonto", "John");
-            Account c4a2 = new Account(6000, "USD", "Johns Sparkonto", "John");
+            Account c4a1 = new Account(300000, "SEK", "Rasmus Lönekonto", "Rasmus");
+            Account c4a2 = new Account(400, "JPY", "Rasmus Sparkonto", "Rasmus");
 
-            c3.CreateNewAccount(c4a1);
-            c3.CreateNewAccount(c4a2);
+            c4.CreateNewAccount(c4a1);
+            c4.CreateNewAccount(c4a2);
             /////////////////////////////////////////////////
 
             Console.Clear();
