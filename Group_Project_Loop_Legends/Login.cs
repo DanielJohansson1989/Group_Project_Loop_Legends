@@ -8,14 +8,11 @@ namespace Group_Project_Loop_Legends
 {
     internal class Login
     {
-        public static void LogIn(List<Customer> customerList) // Make LogIn its own class instead of method in User? S in SOLID principles
+        public static void LogIn(List<Customer> customerList, List<Admin> adminList) // Make LogIn its own class instead of method in User? S in SOLID principles
         {            
             //CustomerManager customerManager = new CustomerManager();
             //customerManager.CreateInitialCustomers();
-            Admin a1 = new Admin("Pär", "passwordP");
-            Admin a2 = new Admin("Tobias", "passwordT");
-
-            List<Admin> adminList = new List<Admin> { a1, a2 };
+           
            
 
             Console.Clear();

@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace Group_Project_Loop_Legends
 {
-    internal class CustomerManager
+    internal class UserManager
     {
         List<Customer> customerList { get; } = new List<Customer>();
+        List<Admin> adminList = new List<Admin>();
 
-        public void CreateInitialCustomers ()
+        public void CreateInitialUsers()
         {
             Customer c1 = new Customer("Anton", "passwordA");
             Customer c2 = new Customer("Daniel", "passwordD");
@@ -45,10 +46,17 @@ namespace Group_Project_Loop_Legends
 
             c4.CreateNewAccount(c4a1);
             c4.CreateNewAccount(c4a2);
+
+            Admin a1 = new Admin("Pär", "passwordP");
+            Admin a2 = new Admin("Tobias", "passwordT");
+
+            adminList.Add(a1);
+            adminList.Add(a2);
+
             bool isRunning = true;
             while (isRunning)
             {
-                Login.LogIn(customerList);
+                Login.LogIn(customerList, adminList);
             }
             
 
