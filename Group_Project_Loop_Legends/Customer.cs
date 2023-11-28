@@ -157,6 +157,7 @@ namespace Group_Project_Loop_Legends
         public void SeeAccounts()
         {
             Console.WriteLine("Kontonamn\t\tSaldo\tValuta\t\n");
+            Console.ReadKey();
             foreach (Account item in _accountList)
             {
                 item.PrintAccounts();
@@ -175,7 +176,7 @@ namespace Group_Project_Loop_Legends
             Console.WriteLine("Logging out...");
             Thread.Sleep(1500);
             Console.Clear();
-            Login.LogIn();
+            //Login.LogIn();
         }
     }
 }
