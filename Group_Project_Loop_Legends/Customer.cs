@@ -157,7 +157,6 @@ namespace Group_Project_Loop_Legends
         public void SeeAccounts()
         {
             Console.WriteLine("Kontonamn\t\tSaldo\tValuta\t\n");
-            Console.ReadKey();
             foreach (Account item in _accountList)
             {
                 item.PrintAccounts();
@@ -241,7 +240,7 @@ namespace Group_Project_Loop_Legends
                     {
                         Console.WriteLine($"     {account.AccountName}");
                     }
-                    int toAccountPosition = 0;
+                    int toAccountPosition = 1;
 
                     Console.SetCursorPosition(0, toAccountPosition);
                     Console.CursorVisible = false;
@@ -255,12 +254,12 @@ namespace Group_Project_Loop_Legends
                         Console.SetCursorPosition(0, toAccountPosition);
                         Console.Write("   ");
 
-                        if (navigator.Key == ConsoleKey.UpArrow && toAccountPosition > 0)
+                        if (navigator.Key == ConsoleKey.UpArrow && toAccountPosition > 1)
                         {
                             toAccountPosition--;
                         }
 
-                        else if (navigator.Key == ConsoleKey.DownArrow && toAccountPosition < accounts.Count - 1)
+                        else if (navigator.Key == ConsoleKey.DownArrow && toAccountPosition < accounts.Count)
                         {
                             toAccountPosition++;
                         }
@@ -275,14 +274,12 @@ namespace Group_Project_Loop_Legends
 
                     while (!double.TryParse(Console.ReadLine(), out amountToTransfer)) { Console.WriteLine("Incorrect value"); }
 
-                    double amountInCorrectCurrency = CurrencyConverter.ConvertCurrency(accounts[fromAccountPosition], accounts[toAccountPosition], amountToTransfer);
+                    double amountInCorrectCurrency = CurrencyConverter.ConvertCurrency(accounts[fromAccountPosition - 1], accounts[toAccountPosition - 1], amountToTransfer);
 
                     accounts[fromAccountPosition - 1].Balance -= amountToTransfer;
                     accounts[toAccountPosition - 1].Balance += amountInCorrectCurrency;
 
                     Console.WriteLine($"{accounts[fromAccountPosition - 1].Balance} \n{accounts[toAccountPosition - 1].Balance}");
-
-
                     break;
 
                 case 1: // Transfer between other users accounts
