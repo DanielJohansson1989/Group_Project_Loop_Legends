@@ -10,6 +10,8 @@ namespace Group_Project_Loop_Legends
     {
         public static void LogIn() // Make LogIn its own class instead of method in User? S in SOLID principles
         {            
+            CustomerManager customerManager = new CustomerManager();
+            customerManager.CreateInitialCustomers();
             Admin a1 = new Admin("Pär", "passwordP");
             Admin a2 = new Admin("Tobias", "passwordT");
 
@@ -83,9 +85,9 @@ namespace Group_Project_Loop_Legends
                     Console.Write("Password: ");
                     string password = Console.ReadLine();
 
-                    Customer uCheck = CustomerManager.customerList.Find(e => e._name == username);
+                    Customer uCheck = customerManager.CustomerLogin(username, password);
 
-                    if (uCheck == null || uCheck._password != password)
+                    if (uCheck == null)
                     {
                         Console.WriteLine("Username and password did not match . . .");
                         i--;

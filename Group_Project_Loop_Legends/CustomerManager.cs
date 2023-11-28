@@ -51,9 +51,11 @@ namespace Group_Project_Loop_Legends
 
         }
 
-        public string FindCustomer()
+        public Customer CustomerLogin(string username, string password)
         {
+            return customerList.Find(e => e._name == username && e._password == password);
 
+            
         }
     }
 }
