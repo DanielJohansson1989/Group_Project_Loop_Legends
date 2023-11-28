@@ -83,7 +83,7 @@ namespace Group_Project_Loop_Legends
                     else
                     {
                         Console.WriteLine("Login successful . . .");
-                        //Admin.Menu();   //This will work if menu method is set to static
+                        uCheck.Menu();
                         break;
                     }                                       
                 }
@@ -110,8 +110,8 @@ namespace Group_Project_Loop_Legends
                     else
                     {
                         Console.WriteLine("Login successful . . .");
-                        uCheck.Menu(); // This will work if menu method is set to static- 
-                        break;//It works if I use uCheck.Menu() is that correct?//AH
+                        uCheck.Menu();
+                        break;
                     }
                     
                 }
