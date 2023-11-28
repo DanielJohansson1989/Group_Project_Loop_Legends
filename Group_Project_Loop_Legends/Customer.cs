@@ -293,6 +293,8 @@ namespace Group_Project_Loop_Legends
         }
         public static void LoanMoney(List<Account> accountList)
         {
+            double totalAssetInSEK = CurrencyConverter.LoanMethod(accountList);
+            Console.WriteLine($"Based on your total assets you can loan up to {totalAssetInSEK} SEK"); 
             // Must convert all assets on all accounts of the customer to base currency.
             // Create new method for this in CurrencyConverter class.
             // Then present how much SEK (only SEK?) they can loan (only 5 times of balance MINUS(!) credit something)

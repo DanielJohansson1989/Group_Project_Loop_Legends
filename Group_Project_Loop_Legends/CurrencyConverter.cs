@@ -151,6 +151,48 @@ namespace Group_Project_Loop_Legends
                     throw new ArgumentException($"Unsupported currency: {receivingAccount.Currency}");
             }
         }
+        public static double LoanMethod(List<Account> accountList)
+        {
+            double baseCurrency = 1;
+            double totalBaseValue = 0;
+
+            foreach (Account item in accountList)
+            {
+                switch (item.Currency)
+                {
+                    case "SEK":
+                        // Convert to base value
+                        // totalBaseValue += the converted value
+                        break;
+
+                    case "USD":
+                        // Convert to base value
+                        // totalBaseValue += the converted value
+                        break;
+
+                    case "EURO":
+                        // Convert to base value
+                        // totalBaseValue += the converted value
+                        break;
+
+                    case "GBP":
+                        // Convert to base value
+                        // totalBaseValue += the converted value
+                        break;
+
+                    case "JPY":
+                        // Convert to base value
+                        // totalBaseValue += the converted value
+                        break;
+
+                    default:
+                        // Throw new exception something "no valid currency admitted".
+                        break;
+                }
+            }
+            // Convert totalBaseValue to SEK
+            return totalBaseValue; // fast det ska vara SEK
+        }
         public double SEKRate
         {
             get { return _sekRate; }
