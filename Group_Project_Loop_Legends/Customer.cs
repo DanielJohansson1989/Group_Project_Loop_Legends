@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.Design;
 using System.Linq;
 using System.Net.Http.Headers;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -71,7 +72,7 @@ namespace Group_Project_Loop_Legends
                     //AccountHistory();
                     break;
                 case 4:
-                    TransferMoney(_accountList, _historyList);
+                    TransferMoney(customerList, _accountList, _historyList);
                     break;
                 case 5:
                     LoanMoney(_accountList, _credit);
@@ -189,7 +190,7 @@ namespace Group_Project_Loop_Legends
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-        public void TransferMoney(List<Account> accounts, List<string> historyList)
+        public void TransferMoney(List<Customer> customerList, List<Account> accounts, List<string> historyList)
         {
             // Prints menu of functionality 
             Console.Clear();
@@ -352,7 +353,164 @@ namespace Group_Project_Loop_Legends
                     break;
 
                 case 1: // Transfer between other users accounts
-                    Console.WriteLine("Not implemented...\nPress any button to exit"); Console.ReadKey();
+                    
+                    // Print menu with available customers
+                    Console.WriteLine("Select recipient");
+
+                    foreach (Customer customer in customerList)
+                    {
+                        Console.WriteLine($"     {customer._name}");
+                    }
+
+                    // Let user select recipient/customer
+                    cursorPosition = 1;
+                    Console.SetCursorPosition(0, cursorPosition);
+                    Console.CursorVisible = false;
+                    Console.Write("-->");
+
+                    do
+                    {
+                        navigator = Console.ReadKey();
+                        Console.SetCursorPosition(0, cursorPosition);
+                        Console.Write("   ");
+
+                        if (navigator.Key == ConsoleKey.UpArrow && cursorPosition > 1)
+                        {
+                            cursorPosition--;
+                        }
+
+                        else if (navigator.Key == ConsoleKey.DownArrow && cursorPosition < customerList.Count)
+                        {
+                            cursorPosition++;
+                        }
+
+                        Console.SetCursorPosition(0, cursorPosition);
+                        Console.Write("-->");
+                    } while (navigator.Key != ConsoleKey.Enter);
+
+                    
+                    // Print menu of this users account to transfer from - only accounts with balance > 0 are visible
+                    Console.WriteLine("Select an account to transfer money FROM");
+
+                    temporaryAccounts = new List<Account>();
+
+                    foreach (Account account in accounts)
+                    {
+                        if (account.Balance > 0)
+                        {
+                            Console.WriteLine($"     {account.AccountName}");
+
+                            // Put available accounts in a new list with correct index according to user selection
+                            temporaryAccounts.Add(account);
+                        }
+                    }
+
+                    // Return the user to customer meny if no accounts av balance > 0
+                    if (temporaryAccounts.Count == 0)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("You do not have any money! Returning to menu...");
+                        Thread.Sleep(2000);
+                        Menu();
+                    }
+
+                    // Let user select account from menu
+                    fromAccountPosition = 1;
+                    Console.SetCursorPosition(0, fromAccountPosition);
+                    Console.CursorVisible = false;
+                    Console.Write("-->");
+
+                    do
+                    {
+                        navigator = Console.ReadKey();
+                        Console.SetCursorPosition(0, fromAccountPosition);
+                        Console.Write("   ");
+
+                        if (navigator.Key == ConsoleKey.UpArrow && fromAccountPosition > 1)
+                        {
+                            fromAccountPosition--;
+                        }
+
+                        else if (navigator.Key == ConsoleKey.DownArrow && fromAccountPosition < temporaryAccounts.Count)
+                        {
+                            fromAccountPosition++;
+                        }
+
+                        Console.SetCursorPosition(0, fromAccountPosition);
+                        Console.Write("-->");
+                    } while (navigator.Key != ConsoleKey.Enter);
+                    Console.Clear();
+
+                    // Print recipients available accounts
+                    Console.WriteLine("Select an account to transfer money TO");
+                    foreach (Account account in customerList[cursorPosition]._accountList)
+                    {
+                        Console.WriteLine($"     {account.AccountName}");
+                    }
+
+                    // Let user select an account
+                    toAccountPosition = 1;
+                    Console.SetCursorPosition(0, toAccountPosition);
+                    Console.CursorVisible = false;
+                    Console.Write("-->");
+
+                    do
+                    {
+                        navigator = Console.ReadKey();
+                        Console.SetCursorPosition(0, toAccountPosition);
+                        Console.Write("   ");
+
+                        if (navigator.Key == ConsoleKey.UpArrow && toAccountPosition > 1)
+                        {
+                            toAccountPosition--;
+                        }
+
+                        else if (navigator.Key == ConsoleKey.DownArrow && toAccountPosition < /* Needs to check count of customerList[cursorPosition]._accountList */)
+                        {
+                            toAccountPosition++;
+                        }
+
+                        Console.SetCursorPosition(0, toAccountPosition);
+                        Console.Write("-->");
+                    } while (navigator.Key != ConsoleKey.Enter);
+
+                    // Let user enter amount to transfer
+                    // double amountToTransfer; // This is declared in case 0
+                    do
+                    {
+                        Console.Clear();
+                        Console.WriteLine("How much money would you like to transfer?");
+                        while (!double.TryParse(Console.ReadLine(), out amountToTransfer))
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Incorrect value");
+                            Thread.Sleep(1500);
+                            Console.Clear();
+                            Console.WriteLine("How much money would you like to transfer?");
+                        }
+
+                        // Check if there is enough balance in account to transfer from - Prints message if not
+                        if (temporaryAccounts[fromAccountPosition - 1].Balance - amountToTransfer < 0)
+                        {
+                            Console.WriteLine("The amount exceeds current balance!\nPlease enter a lower amount");
+                            Thread.Sleep(1500);
+                        }
+
+                    } while (temporaryAccounts[fromAccountPosition - 1].Balance - amountToTransfer < 0);
+
+                    // Convert the amount to correct currency
+                    amountInCorrectCurrency = CurrencyConverter.ConvertCurrency(temporaryAccounts[fromAccountPosition - 1], accounts[toAccountPosition - 1], amountToTransfer);
+
+                    // Find correct index on the account where money is withdrawn from
+                    fromAccountIndex = accounts.IndexOf(temporaryAccounts[fromAccountPosition - 1]);
+
+                    // Do the actual transfer
+                    accounts[fromAccountIndex].Balance -= amountToTransfer;
+                    accounts[toAccountPosition - 1].Balance += amountInCorrectCurrency;
+
+                    // Saving transaction as history
+                    historyList.Add($"{amountToTransfer} {accounts[fromAccountIndex].Currency} withdrawn from {accounts[fromAccountIndex].AccountName}");
+                    historyList.Add($"{amountInCorrectCurrency} {accounts[toAccountPosition - 1].Currency} deposited to {accounts[toAccountPosition - 1].AccountName}");
                     break;
             }
             Menu();
