@@ -73,7 +73,7 @@ namespace Group_Project_Loop_Legends
                     TransferMoney(_accountList, _historyList);
                     break;
                 case 5:
-                    LoanMoney(_accountList);
+                    LoanMoney(_accountList, _credit);
                     break;              
                 case 6:
                     LogOut();
@@ -85,10 +85,20 @@ namespace Group_Project_Loop_Legends
             }
 
         }
+
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
         public void CreateNewAccount(Account newAccount)
         {
             _accountList.Add(newAccount);
         }
+
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
         public void AddAccount()
         {
             Console.Clear();
@@ -154,6 +164,11 @@ namespace Group_Project_Loop_Legends
             _accountList.Add(newAccount);
             Menu();
         }
+
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
         public void SeeAccounts()
         {
             Console.WriteLine("Kontonamn\t\tSaldo\tValuta\t\n");
@@ -165,6 +180,11 @@ namespace Group_Project_Loop_Legends
             Console.ReadLine();
             Menu();
         }
+
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
         public void TransferMoney(List<Account> accounts, List<string> historyList)
         {
             Console.Clear();
@@ -287,20 +307,102 @@ namespace Group_Project_Loop_Legends
             }
             Menu();
         }
-        public static void LoanMoney(List<Account> accountList)
+
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        
+
+        public static void LoanMoney(List<Account> accountList, double credit)
         {
+            ConsoleKeyInfo navigator;
+            double wantLoan = 0;
             double totalAssetInSEK = CurrencyConverter.TotalAsset(accountList);
-            Console.WriteLine($"Based on your total assets you can loan up to {(totalAssetInSEK/*-_credit... hur ska jag få in inloggad användares credit här*/) * 5} SEK");
+            double maxLoan = (totalAssetInSEK - credit) * 5;
+            Console.WriteLine($"Based on your total assets ({totalAssetInSEK} SEK) and your credit ({credit} SEK) you can loan up to {maxLoan} SEK");
+            
+            while (true)
+            {
+                Console.Write("How much do you want to loan? ");
+                try
+                {
+                    wantLoan = Convert.ToDouble(Console.ReadLine());
+                    break;
+                }
+                catch
+                {
+                    Console.WriteLine("Invalid input. Press Enter to try again.\n");
+                    Console.ReadLine();
+                }
+            }
+            while (wantLoan > maxLoan)
+            {
+                Console.WriteLine("You can not loan that much.");
+                Console.Write("Request a lower amount: ");
+                try
+                {
+                    wantLoan = Convert.ToDouble(Console.ReadLine());
+                }
+                catch
+                {
+                    Console.WriteLine("Invalid input. Press Enter to try again.\n");
+                    Console.ReadLine();
+                }
+            }
+            Console.Clear();
+            Console.WriteLine("To which account do you want to insert the loan?\n");
+
+
+
+            foreach (Account account in accountList)
+            {
+                Console.WriteLine($"     {account.AccountName}");
+            }
+            int fromAccountPosition = 1;
+
+            Console.SetCursorPosition(0, fromAccountPosition);
+            Console.CursorVisible = false;
+            Console.Write("-->");
+
+            do
+            {
+                navigator = Console.ReadKey();
+                Console.SetCursorPosition(0, fromAccountPosition);
+                Console.Write("   ");
+
+                if (navigator.Key == ConsoleKey.UpArrow && fromAccountPosition > 1)
+                {
+                    fromAccountPosition--;
+                }
+
+                else if (navigator.Key == ConsoleKey.DownArrow && fromAccountPosition < accountList.Count)
+                {
+                    fromAccountPosition++;
+                }
+
+                Console.SetCursorPosition(0, fromAccountPosition);
+                Console.Write("-->");
+            } while (navigator.Key != ConsoleKey.Enter);
+
+
+
+
+
 
 
             Console.ReadLine();
             // Must convert all assets on all accounts of the customer to base currency.
             // Create new method for this in CurrencyConverter class.
             // Then present how much SEK (only SEK?) they can loan (only 5 times of balance MINUS(!) credit something)
+            // Then ask how much they want to loan
             // Then they can choose which account they want to put it it.
             // Then convert to the currency of that account and put the money into it.
             // Then add credit to the customer.
         }
+
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
         public static void LogOut() //Should we have a LogOut Method? // AH.
         {
             Console.WriteLine("Logging out...");
