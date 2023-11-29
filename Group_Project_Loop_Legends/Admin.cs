@@ -55,7 +55,7 @@ namespace Group_Project_Loop_Legends
                     SetNewCurrency();
                     break;
                 case 2:
-                    //CreateNewCustomer();
+                    UserManager.AddCustomer("Name", "password");
                     break;
                 case 3:
                     LogOut();
