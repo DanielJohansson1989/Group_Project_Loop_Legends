@@ -103,9 +103,12 @@ namespace Group_Project_Loop_Legends
         public void AddAccount()
         {
             Console.Clear();
-            Console.Write("Name of the account: ");
-            string accountName = Console.ReadLine();
+            Console.WriteLine("Name of the account (max 23 characters):");
+            string userInput = Console.ReadLine();
 
+            userInput = userInput.Substring(0, Math.Min(userInput.Length, 23));
+
+            string accountName = userInput.PadRight(23);
             Console.Clear();
             Console.WriteLine("What currency would you like your account to have?");
             Console.WriteLine("\n     SEK\n     USD\n     EURO\n     GBP\n     JPY\n");
