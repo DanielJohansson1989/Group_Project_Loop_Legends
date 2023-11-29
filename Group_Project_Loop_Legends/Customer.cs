@@ -222,11 +222,27 @@ namespace Group_Project_Loop_Legends
             {
                 case 0:   // Transfer between own accounts
 
-                    // Selecting account to transfer from
+                    // Print menu of account to transfer from
                     Console.WriteLine("Select an account to transfer money FROM");
+
+                    List<Account> temporaryAccounts = new List<Account>();
+
                     foreach (Account account in accounts)
                     {
-                        Console.WriteLine($"     {account.AccountName}");
+                        if (account.Balance > 0)
+                        {
+                            Console.WriteLine($"     {account.AccountName}");
+                            temporaryAccounts.Add(account);
+                        }
+                    }
+
+                    // Returns the user to customer meny if no accounts av balance > 0
+                    if (temporaryAccounts.Count == 0)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("You do not have any money! Returning to menu...");
+                        Thread.Sleep(2000);
+                        Menu();
                     }
                     int fromAccountPosition = 1;
 
@@ -245,7 +261,7 @@ namespace Group_Project_Loop_Legends
                             fromAccountPosition--;
                         }
 
-                        else if (navigator.Key == ConsoleKey.DownArrow && fromAccountPosition < accounts.Count)
+                        else if (navigator.Key == ConsoleKey.DownArrow && fromAccountPosition < temporaryAccounts.Count)
                         {
                             fromAccountPosition++;
                         }
@@ -301,18 +317,20 @@ namespace Group_Project_Loop_Legends
                             Console.WriteLine("How much money would you like to transfer?");
                         }
 
-                        if (accounts[fromAccountPosition - 1].Balance - amountToTransfer < 0)
+                        if (temporaryAccounts[fromAccountPosition - 1].Balance - amountToTransfer < 0)
                         {
                             Console.WriteLine("The amount exceeds current balance!\nPlease enter a lower amount");
                             Thread.Sleep(1500);
                         }
-                    } while (accounts[fromAccountPosition - 1].Balance - amountToTransfer < 0);
-                    double amountInCorrectCurrency = CurrencyConverter.ConvertCurrency(accounts[fromAccountPosition - 1], accounts[toAccountPosition - 1], amountToTransfer);
+                    } while (temporaryAccounts[fromAccountPosition - 1].Balance - amountToTransfer < 0);
+                    double amountInCorrectCurrency = CurrencyConverter.ConvertCurrency(temporaryAccounts[fromAccountPosition - 1], accounts[toAccountPosition - 1], amountToTransfer);
 
-                    accounts[fromAccountPosition - 1].Balance -= amountToTransfer;
+                    int fromAccountIndex = accounts.IndexOf(temporaryAccounts[fromAccountPosition - 1]);
+
+                    accounts[fromAccountIndex].Balance -= amountToTransfer;
                     accounts[toAccountPosition - 1].Balance += amountInCorrectCurrency;
 
-                    historyList.Add($"{amountToTransfer} {accounts[fromAccountPosition - 1].Currency} withdrawn from {accounts[fromAccountPosition - 1].AccountName}");
+                    historyList.Add($"{amountToTransfer} {accounts[fromAccountIndex].Currency} withdrawn from {accounts[fromAccountIndex].AccountName}");
                     historyList.Add($"{amountInCorrectCurrency} {accounts[toAccountPosition - 1].Currency} deposited to {accounts[toAccountPosition - 1].AccountName}");
                     break;
 
@@ -325,7 +343,7 @@ namespace Group_Project_Loop_Legends
 
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        
+
         // How assign credit to logged in object?
         public void LoanMoney(List<Account> accountList, double credit)
         {
