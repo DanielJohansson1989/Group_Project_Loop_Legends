@@ -61,11 +61,31 @@ namespace Group_Project_Loop_Legends
                     Console.WriteLine("Enter a password");
                     Console.Write(": ");
                     string userPassword = Console.ReadLine();
-                    Console.Clear();
-                    Console.WriteLine($"Welcome {userName}, your account has been created!");
-                    Console.WriteLine("\nPress Enter to return to the menu");
-                    Console.ReadKey();
-                    UserManager.AddCustomer(userName, userPassword);
+                    Console.WriteLine("Confirm password");
+                    Console.Write(": ");
+                    string confirmPassword = Console.ReadLine();
+
+                    if (userPassword == confirmPassword)
+                    {                      
+                        Console.Clear();
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine($"The customer account for {userName} has been successfully created!");
+                        Console.ResetColor();
+                        Console.WriteLine("\nPress Enter to return to the menu");
+                        Console.ReadKey();
+
+                        UserManager.AddCustomer(userName, userPassword);
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("\nPasswords do not match, try again.");
+                        Console.ResetColor();
+                        Console.WriteLine("\nPress Enter to return to the menu");
+                        Console.ReadKey();
+                        Menu();
+                    }
                     break;
                 case 3:
                     LogOut();
