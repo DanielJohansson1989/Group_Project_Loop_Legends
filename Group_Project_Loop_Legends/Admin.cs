@@ -55,11 +55,15 @@ namespace Group_Project_Loop_Legends
                     SetNewCurrency();
                     break;
                 case 2:
-                    Console.Write("Enter a username: ");
+                    Console.WriteLine("Enter a username");
+                    Console.Write(": ");
                     string userName = Console.ReadLine();
-                    Console.Write("Enter a password: ");
+                    Console.WriteLine("Enter a password");
+                    Console.Write(": ");
                     string userPassword = Console.ReadLine();
-                    Console.WriteLine("Account has been created, press enter to return to the menu.");
+                    Console.Clear();
+                    Console.WriteLine($"Welcome {userName}, your account has been created!");
+                    Console.WriteLine("\nPress Enter to return to the menu");
                     Console.ReadKey();
                     UserManager.AddCustomer(userName, userPassword);
                     break;
@@ -68,40 +72,79 @@ namespace Group_Project_Loop_Legends
                     break;
             }
 
-
         }
         public void SetNewCurrency()
         {
-            Console.WriteLine("Enter the currency to update: SEK, USD, EURO, GBP, or JPY");
-            Console.Write(": ");
-            string currency = Console.ReadLine().ToUpper(); 
+            Console.WriteLine("Enter the currency to update: ");
+            Console.WriteLine("    1.SEK");
+            Console.WriteLine("    2.USD");
+            Console.WriteLine("    3.EURO");
+            Console.WriteLine("    4.GBP");
+            Console.WriteLine("    5.JPY");
+
+            int cursorPos = 1;
+
+            Console.SetCursorPosition(0, cursorPos);
+            Console.CursorVisible = false;
+            Console.Write("-->");
+            ConsoleKeyInfo navigator;
+            navigator = Console.ReadKey();
+
+            while (navigator.Key != ConsoleKey.Enter)
+            {
+                navigator = Console.ReadKey();
+                Console.SetCursorPosition(0, cursorPos);
+                Console.Write("   ");
+
+                if (navigator.Key == ConsoleKey.UpArrow && cursorPos > 1)
+                {
+                    cursorPos--;
+                }
+
+                else if (navigator.Key == ConsoleKey.DownArrow && cursorPos < 5)
+                {
+                    cursorPos++;
+                }
+
+                Console.SetCursorPosition(0, cursorPos);
+                Console.Write("-->");
+            }
+
+            string currency = "";
 
             double currentRate = 0.0; 
-            switch (currency)
+
+            switch (cursorPos)
             {
-                case "SEK":
+                case 1:
+                    currency = "SEK";
                     currentRate = CurrencyConverter._sekRate;
                     break;
-                case "USD":
+                case 2:
+                    currency = "USD";
                     currentRate = CurrencyConverter._usdRate;
                     break;
-                case "EURO":
+                case 3:
+                    currency = "EURO";
                     currentRate = CurrencyConverter._euroRate;
                     break;
-                case "GBP":
+                case 4:
+                    currency = "GBP";
                     currentRate = CurrencyConverter._gbpRate;
                     break;
-                case "JPY":
+                case 5:
+                    currency = "JPY";
                     currentRate = CurrencyConverter._jpyRate;
                     break;
                 default:
-                    Console.WriteLine($"Currency not supported: {currency}");
+                    Console.WriteLine($"Currency not supported: {cursorPos}");
                     Console.WriteLine("\nPress Enter to return to the menu");
                     Console.ReadKey();
                     Menu();
                     return;
             }
 
+            Console.Clear();
             Console.WriteLine($"\nCurrent exchange rate for {currency}: {currentRate}");
             Console.WriteLine("\nEnter the new exchange rate");
             Console.Write(": ");
