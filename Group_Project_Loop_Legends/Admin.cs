@@ -55,7 +55,13 @@ namespace Group_Project_Loop_Legends
                     SetNewCurrency();
                     break;
                 case 2:
-                    //CreateNewCustomer();
+                    Console.Write("Enter a username: ");
+                    string userName = Console.ReadLine();
+                    Console.Write("Enter a password: ");
+                    string userPassword = Console.ReadLine();
+                    Console.WriteLine("Account has been created, press enter to return to the menu.");
+                    Console.ReadKey();
+                    UserManager.AddCustomer(userName, userPassword);
                     break;
                 case 3:
                     LogOut();
