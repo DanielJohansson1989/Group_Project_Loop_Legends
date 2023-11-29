@@ -326,15 +326,18 @@ namespace Group_Project_Loop_Legends
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
         
-        // How assign credit to logged in object?
+        // Is assigning credit to logged in object working correctly?
+        // You should not be able to loan negative amounts
+        // Option to exit from Loan Menu.
+        // Exit from Loan Menu if customer cant loan any money.
         public void LoanMoney(List<Account> accountList, double credit)
         {
             Console.CursorVisible = true;
             ConsoleKeyInfo navigator;
             double wantLoan = 0;
             double totalAssetInSEK = CurrencyConverter.TotalAsset(accountList);
-            double maxLoan = (totalAssetInSEK - credit) * 5;
-            Console.WriteLine($"Based on your total assets ({totalAssetInSEK} SEK) and your credit ({credit} SEK) you can loan up to {maxLoan} SEK.");
+            double maxLoan = (totalAssetInSEK - credit - credit) * 5; // This isn't quite right
+            Console.WriteLine($"Based on your total assets ({totalAssetInSEK} SEK) and your credit ({credit} SEK) you can loan up to {maxLoan} SEK."); // This need to be controlled
             
             while (true)
             {
@@ -397,7 +400,7 @@ namespace Group_Project_Loop_Legends
             } while (navigator.Key != ConsoleKey.Enter);
 
             Console.Clear();
-
+            Credit += wantLoan;
             Account bankLoan = new Account(wantLoan, "SEK", "bankLoanTempAccount", "Loop Legends Bank"); // Had to create a new account to use the ConvertCurrency method.
 
             double balanceBeforeLoan = accountList[cursorPosition - 2].Balance;
@@ -429,6 +432,11 @@ namespace Group_Project_Loop_Legends
             Thread.Sleep(1500);
             Console.Clear();
             //Login.LogIn();
+        }
+        public double Credit
+        {
+            get { return _credit; }
+            set { _credit = value; }
         }
     }
 }
