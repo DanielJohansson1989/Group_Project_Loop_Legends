@@ -64,7 +64,7 @@ namespace Group_Project_Loop_Legends
                     SeeAccounts();
                     break;
                 case 2:
-                    //CreateNewAccount();
+                    AddAccount();
                     break;
                 case 3:
                     //AccountHistory();
@@ -105,7 +105,6 @@ namespace Group_Project_Loop_Legends
             Console.CursorVisible = false;
             Console.Write("-->");
             ConsoleKeyInfo navigator;
-            //navigator = Console.ReadKey();
 
             do
             {
@@ -176,7 +175,6 @@ namespace Group_Project_Loop_Legends
             Console.CursorVisible = false;
             Console.Write("-->");
             ConsoleKeyInfo navigator;
-            //navigator = Console.ReadKey();
 
             do
             {
@@ -215,8 +213,6 @@ namespace Group_Project_Loop_Legends
                     Console.CursorVisible = false;
                     Console.Write("-->");
 
-                    //navigator = Console.ReadKey();
-
                     do
                     {
                         navigator = Console.ReadKey();
@@ -249,8 +245,6 @@ namespace Group_Project_Loop_Legends
                     Console.SetCursorPosition(0, toAccountPosition);
                     Console.CursorVisible = false;
                     Console.Write("-->");
-
-                    //navigator = Console.ReadKey();
 
                     do
                     {
