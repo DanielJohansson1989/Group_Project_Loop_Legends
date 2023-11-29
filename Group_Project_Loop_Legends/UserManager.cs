@@ -8,8 +8,8 @@ namespace Group_Project_Loop_Legends
 {
     internal class UserManager
     {
-        List<Customer> customerList = new List<Customer>();
-        List<Admin> adminList = new List<Admin>(); 
+        public static List<Customer> customerList = new List<Customer>();
+        public List<Admin> adminList = new List<Admin>(); 
 
         public void CreateInitialUsers ()
         {
@@ -61,7 +61,7 @@ namespace Group_Project_Loop_Legends
             }
 
         }
-        public void AddCustomer(string username, string password)
+        public static void AddCustomer(string username, string password)
         {
             Customer NewC = new Customer(username, password);
             customerList.Add(NewC);
