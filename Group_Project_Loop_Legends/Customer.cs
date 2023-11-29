@@ -265,16 +265,30 @@ namespace Group_Project_Loop_Legends
                         Console.SetCursorPosition(0, toAccountPosition);
                         Console.Write("-->");
                     } while (navigator.Key != ConsoleKey.Enter);
-                    Console.Clear();
 
-                    Console.WriteLine("How much money would you like to transfer?");
                     double amountToTransfer;
+                    do
+                    {
+                        Console.Clear();
+                        Console.WriteLine("How much money would you like to transfer?");
+                        while (!double.TryParse(Console.ReadLine(), out amountToTransfer))
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Incorrect value");
+                            Thread.Sleep(1500);
+                            Console.Clear();
+                            Console.WriteLine("How much money would you like to transfer?");
+                        }
 
-                    while (!double.TryParse(Console.ReadLine(), out amountToTransfer)) { Console.WriteLine("Incorrect value"); }
-
+                        if (accounts[fromAccountPosition - 1].Balance - amountToTransfer < 0)
+                        {
+                            Console.WriteLine("The amount exceeds current balance!\nPlease enter a lower amount");
+                            Thread.Sleep(1500);
+                        }
+                    } while (accounts[fromAccountPosition - 1].Balance - amountToTransfer < 0);
                     double amountInCorrectCurrency = CurrencyConverter.ConvertCurrency(accounts[fromAccountPosition - 1], accounts[toAccountPosition - 1], amountToTransfer);
 
-                    accounts[fromAccountPosition - 1].Balance -= amountToTransfer; //OBS Stop user from wthdrawing more than available balance!!!
+                    accounts[fromAccountPosition - 1].Balance -= amountToTransfer;
                     accounts[toAccountPosition - 1].Balance += amountInCorrectCurrency;
 
                     historyList.Add($"{amountToTransfer} {accounts[fromAccountPosition - 1].Currency} withdrawn from {accounts[fromAccountPosition - 1].AccountName}");
