@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Text;
@@ -325,18 +326,19 @@ namespace Group_Project_Loop_Legends
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
         
-
-        public static void LoanMoney(List<Account> accountList, double credit)
+        // How assign credit to logged in object?
+        public void LoanMoney(List<Account> accountList, double credit)
         {
+            Console.CursorVisible = true;
             ConsoleKeyInfo navigator;
             double wantLoan = 0;
             double totalAssetInSEK = CurrencyConverter.TotalAsset(accountList);
             double maxLoan = (totalAssetInSEK - credit) * 5;
-            Console.WriteLine($"Based on your total assets ({totalAssetInSEK} SEK) and your credit ({credit} SEK) you can loan up to {maxLoan} SEK");
+            Console.WriteLine($"Based on your total assets ({totalAssetInSEK} SEK) and your credit ({credit} SEK) you can loan up to {maxLoan} SEK.");
             
             while (true)
             {
-                Console.Write("How much do you want to loan? ");
+                Console.Write("\nHow much do you want to loan? ");
                 try
                 {
                     wantLoan = Convert.ToDouble(Console.ReadLine());
@@ -344,13 +346,12 @@ namespace Group_Project_Loop_Legends
                 }
                 catch
                 {
-                    Console.WriteLine("Invalid input. Press Enter to try again.\n");
-                    Console.ReadLine();
+                    Console.WriteLine("\nInvalid input. Try again.");
                 }
             }
             while (wantLoan > maxLoan)
             {
-                Console.WriteLine("You can not loan that much.");
+                Console.WriteLine("\nYou can not loan that much.");
                 Console.Write("Request a lower amount: ");
                 try
                 {
@@ -358,52 +359,57 @@ namespace Group_Project_Loop_Legends
                 }
                 catch
                 {
-                    Console.WriteLine("Invalid input. Press Enter to try again.\n");
-                    Console.ReadLine();
+                    Console.WriteLine("Invalid input. Try again.\n");
                 }
             }
+
             Console.Clear();
             Console.WriteLine("To which account do you want to insert the loan?\n");
 
-
-
-            foreach (Account account in accountList)
+            foreach (Account account in accountList) // Possible improvement: also print out the balance and currency of the accounts
             {
                 Console.WriteLine($"     {account.AccountName}");
             }
-            int fromAccountPosition = 1;
+            int cursorPosition = 2;
 
-            Console.SetCursorPosition(0, fromAccountPosition);
+            Console.SetCursorPosition(0, cursorPosition);
             Console.CursorVisible = false;
             Console.Write("-->");
 
             do
             {
                 navigator = Console.ReadKey();
-                Console.SetCursorPosition(0, fromAccountPosition);
+                Console.SetCursorPosition(0, cursorPosition);
                 Console.Write("   ");
 
-                if (navigator.Key == ConsoleKey.UpArrow && fromAccountPosition > 1)
+                if (navigator.Key == ConsoleKey.UpArrow && cursorPosition > 2)
                 {
-                    fromAccountPosition--;
+                    cursorPosition--;
                 }
 
-                else if (navigator.Key == ConsoleKey.DownArrow && fromAccountPosition < accountList.Count)
+                else if (navigator.Key == ConsoleKey.DownArrow && cursorPosition < accountList.Count+1)
                 {
-                    fromAccountPosition++;
+                    cursorPosition++;
                 }
 
-                Console.SetCursorPosition(0, fromAccountPosition);
+                Console.SetCursorPosition(0, cursorPosition);
                 Console.Write("-->");
             } while (navigator.Key != ConsoleKey.Enter);
 
+            Console.Clear();
 
+            Account bankLoan = new Account(wantLoan, "SEK", "bankLoanTempAccount", "Loop Legends Bank"); // Had to create a new account to use the ConvertCurrency method.
 
+            double balanceBeforeLoan = accountList[cursorPosition - 2].Balance;
+            accountList[cursorPosition - 2].Balance += CurrencyConverter.ConvertCurrency(bankLoan, accountList[cursorPosition - 2], wantLoan); ;
 
+            Console.WriteLine($"You have now loaned {wantLoan} SEK and inserted it into {accountList[cursorPosition - 2].AccountName}");
+            Console.WriteLine($"\nBalance before loan: {balanceBeforeLoan} {accountList[cursorPosition - 2].Currency}");
+            Console.WriteLine($"Balance after loan : {accountList[cursorPosition - 2].Balance} {accountList[cursorPosition - 2].Currency}");
 
-
-
+            Console.WriteLine("\nPress Enter to return to Menu.");
             Console.ReadLine();
+            Menu();
             // Must convert all assets on all accounts of the customer to base currency.
             // Create new method for this in CurrencyConverter class.
             // Then present how much SEK (only SEK?) they can loan (only 5 times of balance MINUS(!) credit something)
