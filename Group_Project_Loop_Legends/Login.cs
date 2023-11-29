@@ -11,10 +11,15 @@ namespace Group_Project_Loop_Legends
         public static void LogIn(List<Customer> customerList, List<Admin> adminList)
         {
             Console.Clear();
+            Console.WriteLine("   __   ____  ____  ___    __   ______________  _____  ____  ___  ___   _  ____ __\r" +
+                "\n  / /  / __ \\/ __ \\/ _ \\  / /  / __/ ___/ __/ |/ / _ \\/ __/ / _ )/ _ | / |/ / //_/\r" +
+                "\n / /__/ /_/ / /_/ / ___/ / /__/ _// (_ / _//    / // /\\ \\  / _  / __ |/    / ,<   \r" +
+                "\n/____/\\____/\\____/_/    /____/___/\\___/___/_/|_/____/___/ /____/_/ |_/_/|_/_/|_|  \r" +
+                "\n                                                                                 ");
             Console.WriteLine("Welcome to the Loop Legends Bank\n");
             Console.WriteLine("What would you like to log in as? (user arrow keys to navigate, then press Enter)");
             Console.WriteLine("\n     Admin\n     Customer");
-            int y = 4;
+            int y = 9;
             Console.SetCursorPosition(0, y);
             Console.CursorVisible = false;
             Console.Write("-->");
@@ -25,11 +30,11 @@ namespace Group_Project_Loop_Legends
                 navigator = Console.ReadKey();
                 Console.SetCursorPosition(0, y);
                 Console.Write("   ");
-                if (navigator.Key == ConsoleKey.UpArrow && y > 4)
+                if (navigator.Key == ConsoleKey.UpArrow && y > 9)
                 {
                     y--;
                 }
-                else if (navigator.Key == ConsoleKey.DownArrow && y < 5)
+                else if (navigator.Key == ConsoleKey.DownArrow && y < 10)
                 {
                     y++;
                 }
@@ -40,7 +45,7 @@ namespace Group_Project_Loop_Legends
             Console.Clear();
             Console.CursorVisible = true;
 
-            if (y == 4) // Log in Admin
+            if (y == 9) // Log in Admin
             {
                 for (int i = 3; i > 0;)
                 {
@@ -67,7 +72,7 @@ namespace Group_Project_Loop_Legends
                     }                                       
                 }
             }
-            else if (y == 5) // Log in Customer
+            else if (y == 10) // Log in Customer
             {
                 for (int i = 3; i > 0;)
                 {
