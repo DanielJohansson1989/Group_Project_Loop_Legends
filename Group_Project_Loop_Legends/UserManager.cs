@@ -42,7 +42,7 @@ namespace Group_Project_Loop_Legends
             c3.CreateNewAccount(c3a1);
             c3.CreateNewAccount(c3a2);
 
-            Account c4a1 = new Account(400, "SEK", "Rasmus Lönekonto", "Rasmus");
+            Account c4a1 = new Account(4000000000000000000, "SEK", "Rasmus Lönekonto", "Rasmus");
             Account c4a2 = new Account(400, "JPY", "Rasmus Sparkonto", "Rasmus");
 
             c4.CreateNewAccount(c4a1);

@@ -89,16 +89,24 @@ namespace Group_Project_Loop_Legends
         }
 
 
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////// 1. See Your Accounts //////////////////////////////////////////////////////
+        
 
-
-        public void CreateNewAccount(Account newAccount)
+        public void SeeAccounts()
         {
-            _accountList.Add(newAccount);
+            Console.WriteLine("Kontonamn                Saldo          Valuta\n");
+            foreach (Account item in _accountList)
+            {
+                item.PrintAccounts();
+            }
+            Console.WriteLine("\nPress Enter to return to Menu");
+            Console.ReadLine();
+            Menu();
         }
 
 
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        ////////////////////////////////// 2. Create New Account /////////////////////////////////////////////////////
 
 
         public void AddAccount()
@@ -107,9 +115,9 @@ namespace Group_Project_Loop_Legends
             Console.WriteLine("Name of the account (max 23 characters):");
             string accountName = Console.ReadLine();
 
-            while (accountName.Length > 23)
+            while (accountName.Length > 23 || accountName.Length < 1)
             {
-                Console.WriteLine("Please Enter a name shorter than 24 characters");
+                Console.WriteLine("Please Enter a name shorter than 24 characters and longer than zero characters");
                 accountName = Console.ReadLine();
             }
 
@@ -174,23 +182,17 @@ namespace Group_Project_Loop_Legends
         }
 
 
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////// 3. Show Account History ///////////////////////////////////////////
 
 
-        public void SeeAccounts()
+        public void AccountHistory()
         {
-            Console.WriteLine("Kontonamn                Saldo                    Valuta\n");
-            foreach (Account item in _accountList)
-            {
-                item.PrintAccounts();
-            }
-            Console.WriteLine("\nPress Enter to return to Menu");
-            Console.ReadLine();
-            Menu();
+
         }
 
 
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        ////////////////////////////////////////// 4. Transfer Money ////////////////////////////////////////////////
 
 
         public void TransferMoney(/*List<Customer> customerList,*/ List<Account> accounts, List<string> historyList)
@@ -523,8 +525,8 @@ namespace Group_Project_Loop_Legends
         }
 
 
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        
+        ////////////////////////////////////////////// 5. Loan Money //////////////////////////////////////////////
+
         // Is assigning credit to logged in object working correctly?
         public void LoanMoney(List<Account> accountList, double credit)
         {
@@ -536,7 +538,7 @@ namespace Group_Project_Loop_Legends
 
             if(maxLoan > 1)
             {
-                Console.WriteLine($"Based on your total assets ({totalAssetInSEK} SEK) and your credit ({credit} SEK) you can loan up to {maxLoan} SEK.");
+                Console.WriteLine($"Based on your total assets ({totalAssetInSEK:N2} SEK) and your credit ({credit} SEK) you can loan up to {maxLoan:N2} SEK.");
 
                 while (true)
                 {
@@ -625,15 +627,24 @@ namespace Group_Project_Loop_Legends
         }
 
 
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////// 6. Log Out /////////////////////////////////////////////////
 
 
-        public static void LogOut() //Should we have a LogOut Method? // AH.
+        public static void LogOut()
         {
             Console.WriteLine("Logging out...");
             Thread.Sleep(1500);
             Console.Clear();
             //Login.LogIn();
+        }
+
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+        public void CreateNewAccount(Account newAccount)
+        {
+            _accountList.Add(newAccount);
         }
         public double Credit
         {
