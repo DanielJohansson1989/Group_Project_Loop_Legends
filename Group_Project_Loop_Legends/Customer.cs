@@ -526,15 +526,15 @@ namespace Group_Project_Loop_Legends
 
 
         ////////////////////////////////////////////// 5. Loan Money //////////////////////////////////////////////
-
-        // Is assigning credit to logged in object working correctly?
+        
+        
         public void LoanMoney(List<Account> accountList, double credit)
         {
             Console.CursorVisible = true;
             ConsoleKeyInfo navigator;
             double wantLoan = 0;
             double totalAssetInSEK = CurrencyConverter.TotalAsset(accountList);
-            double maxLoan = (totalAssetInSEK - credit - credit) * 5;
+            double maxLoan = (totalAssetInSEK - credit) * 5 - credit;
 
             if(maxLoan > 1)
             {
