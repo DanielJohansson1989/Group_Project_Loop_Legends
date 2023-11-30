@@ -22,7 +22,7 @@ namespace Group_Project_Loop_Legends
         }
         public void PrintAccounts()
         {
-            Console.WriteLine($"{_accountName}\t{_balance}\t{_currency}");
+            Console.WriteLine($"{_accountName, -25}{_balance, -15}{_currency}");
         }
 
         public string Currency

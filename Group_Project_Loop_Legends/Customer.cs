@@ -176,7 +176,7 @@ namespace Group_Project_Loop_Legends
 
         public void SeeAccounts()
         {
-            Console.WriteLine("Kontonamn\t\tSaldo\tValuta\t\n");
+            Console.WriteLine("Kontonamn                Saldo                    Valuta\n");
             foreach (Account item in _accountList)
             {
                 item.PrintAccounts();
