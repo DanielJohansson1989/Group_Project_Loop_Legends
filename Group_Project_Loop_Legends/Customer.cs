@@ -105,11 +105,14 @@ namespace Group_Project_Loop_Legends
         {
             Console.Clear();
             Console.WriteLine("Name of the account (max 23 characters):");
-            string userInput = Console.ReadLine();
+            string accountName = Console.ReadLine();
 
-            userInput = userInput.Substring(0, Math.Min(userInput.Length, 23));
+            while (accountName.Length > 23)
+            {
+                Console.WriteLine("Please Enter a name shorter than 24 characters");
+                accountName = Console.ReadLine();
+            }
 
-            string accountName = userInput.PadRight(23);
             Console.Clear();
             Console.WriteLine("What currency would you like your account to have?");
             Console.WriteLine("\n     SEK\n     USD\n     EURO\n     GBP\n     JPY\n");

@@ -58,6 +58,11 @@ namespace Group_Project_Loop_Legends
                     Console.WriteLine("Enter a username");
                     Console.Write(": ");
                     string userName = Console.ReadLine();
+                    while (userName.Length > 30)
+                    {
+                        Console.WriteLine("Please Enter a name shorter than 31 characters");
+                        userName = Console.ReadLine();
+                    }
                     Console.WriteLine("Enter a password");
                     Console.Write(": ");
                     string userPassword = Console.ReadLine();
