@@ -72,7 +72,7 @@ namespace Group_Project_Loop_Legends
                     //AccountHistory();
                     break;
                 case 4:
-                    TransferMoney(customerList, _accountList, _historyList);
+                    TransferMoney(/*customerList,*/ _accountList, _historyList);
                     break;
                 case 5:
                     LoanMoney(_accountList, _credit);
@@ -190,7 +190,7 @@ namespace Group_Project_Loop_Legends
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-        public void TransferMoney(List<Customer> customerList, List<Account> accounts, List<string> historyList)
+        public void TransferMoney(/*List<Customer> customerList,*/ List<Account> accounts, List<string> historyList)
         {
             // Prints menu of functionality 
             Console.Clear();
@@ -353,7 +353,9 @@ namespace Group_Project_Loop_Legends
                     break;
 
                 case 1: // Transfer between other users accounts
-                    
+                    Console.WriteLine("Not implemented");
+                    Thread.Sleep(1500);
+                    /*
                     // Print menu with available customers
                     Console.WriteLine("Select recipient");
 
@@ -465,7 +467,7 @@ namespace Group_Project_Loop_Legends
                             toAccountPosition--;
                         }
 
-                        else if (navigator.Key == ConsoleKey.DownArrow && toAccountPosition < /* Needs to check count of customerList[cursorPosition]._accountList */)
+                        else if (navigator.Key == ConsoleKey.DownArrow && toAccountPosition <  Needs to check count of customerList[cursorPosition]._accountList )
                         {
                             toAccountPosition++;
                         }
@@ -511,6 +513,7 @@ namespace Group_Project_Loop_Legends
                     // Saving transaction as history
                     historyList.Add($"{amountToTransfer} {accounts[fromAccountIndex].Currency} withdrawn from {accounts[fromAccountIndex].AccountName}");
                     historyList.Add($"{amountInCorrectCurrency} {accounts[toAccountPosition - 1].Currency} deposited to {accounts[toAccountPosition - 1].AccountName}");
+                    */
                     break;
             }
             Menu();
