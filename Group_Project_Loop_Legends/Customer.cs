@@ -69,7 +69,7 @@ namespace Group_Project_Loop_Legends
                     AddAccount();
                     break;
                 case 3:
-                    //AccountHistory();
+                    AccountHistory();
                     break;
                 case 4:
                     TransferMoney(/*customerList,*/ _accountList, _historyList);
@@ -187,7 +187,14 @@ namespace Group_Project_Loop_Legends
 
         public void AccountHistory()
         {
-
+            Console.Clear();
+            foreach (string transaction in _historyList)
+            {
+                Console.WriteLine(transaction);
+            }
+            Console.WriteLine("\nPress Enter to return to Menu");
+            Console.ReadLine();
+            Menu();
         }
 
 
