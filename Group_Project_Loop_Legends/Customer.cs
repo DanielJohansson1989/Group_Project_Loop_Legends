@@ -75,7 +75,7 @@ namespace Group_Project_Loop_Legends
                     TransferMoney(/*customerList,*/ _accountList, _historyList);
                     break;
                 case 5:
-                    LoanMoney(_accountList, _credit);
+                    LoanMoney(_accountList, _credit, _historyList);
                     break;              
                 case 6:
                     LogOut();
@@ -191,6 +191,7 @@ namespace Group_Project_Loop_Legends
             foreach (string transaction in _historyList)
             {
                 Console.WriteLine(transaction);
+                Console.WriteLine("-");
             }
             Console.WriteLine("\nPress Enter to return to Menu");
             Console.ReadLine();
@@ -360,8 +361,8 @@ namespace Group_Project_Loop_Legends
                     accounts[toAccountPosition - 1].Balance += amountInCorrectCurrency;
 
                     // Saving transaction as history
-                    historyList.Add($"{amountToTransfer} {accounts[fromAccountIndex].Currency} withdrawn from {accounts[fromAccountIndex].AccountName}");
-                    historyList.Add($"{amountInCorrectCurrency} {accounts[toAccountPosition - 1].Currency} deposited to {accounts[toAccountPosition - 1].AccountName}");
+                    historyList.Add($"{amountToTransfer:N2} {accounts[fromAccountIndex].Currency} withdrawn from {accounts[fromAccountIndex].AccountName}");
+                    historyList.Add($"{amountInCorrectCurrency:N2} {accounts[toAccountPosition - 1].Currency} deposited to {accounts[toAccountPosition - 1].AccountName}");
                     break;
 
                 case 1: // Transfer between other users accounts
@@ -535,7 +536,7 @@ namespace Group_Project_Loop_Legends
         ////////////////////////////////////////////// 5. Loan Money //////////////////////////////////////////////
         
         
-        public void LoanMoney(List<Account> accountList, double credit)
+        public void LoanMoney(List<Account> accountList, double credit, List<string> historyList)
         {
             Console.CursorVisible = true;
             ConsoleKeyInfo navigator;
@@ -618,6 +619,8 @@ namespace Group_Project_Loop_Legends
                 double balanceBeforeLoan = accountList[cursorPosition - 4].Balance;
                 accountList[cursorPosition - 4].Balance += CurrencyConverter.ConvertCurrency(bankLoan, accountList[cursorPosition - 4], wantLoan); ;
 
+                historyList.Add($"Loaned {wantLoan:N2} SEK. Deposited to {accountList[cursorPosition - 4].AccountName}");
+                
                 Console.WriteLine($"You have now loaned {wantLoan} SEK and inserted it into {accountList[cursorPosition - 4].AccountName}");
                 Console.WriteLine($"\nBalance before loan: {balanceBeforeLoan} {accountList[cursorPosition - 4].Currency}");
                 Console.WriteLine($"Balance after loan : {accountList[cursorPosition - 4].Balance} {accountList[cursorPosition - 4].Currency}");

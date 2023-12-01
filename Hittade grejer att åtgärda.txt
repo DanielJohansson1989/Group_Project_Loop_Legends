@@ -1,5 +1,0 @@
-Pilen i menyerna does not respond första gången man trycker
-
-När man loggar in kan man skriva användarnamn osm inte finns med i customerList.
-Och om en användare som finns skriver fel lösenord tre gånger. Så kan man försöka logga in igen efteråt och få tre nya försök.
-
