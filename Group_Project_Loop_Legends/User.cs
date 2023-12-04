@@ -22,5 +22,10 @@ namespace Group_Project_Loop_Legends
         {
 
         }
+
+        public virtual void Menu(List<Customer> customerList)
+        {
+
+        }
     }
 }
