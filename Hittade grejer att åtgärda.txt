@@ -1,9 +1,14 @@
 göra do-whiles till menyerna så att pilen reagerar på första knapptrycket
 
+Låsas ut vid tre inloggningsförsök. (Måste starta om programmet).
 
+Password måste va mellan 1- 31 characters
 
+Inte kunna skriva nåt i pilmenyerna / svart text?
 
+Login successful SLeep.
 
+Transfer " you do not have any money" sleep för kort
 
 
 
