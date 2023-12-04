@@ -263,8 +263,8 @@ namespace Group_Project_Loop_Legends
                     {
                         Console.Clear();
                         Console.WriteLine("You do not have any money! Returning to menu...");
-                        Thread.Sleep(2000);
-                        Menu();
+                        Thread.Sleep(3000);
+                        break;
                     }
 
                     // Let user select account from menu
@@ -427,7 +427,7 @@ namespace Group_Project_Loop_Legends
                         Console.Clear();
                         Console.WriteLine("You do not have any money! Returning to menu...");
                         Thread.Sleep(2000);
-                        Menu(customerList);
+                        break;
                     }
 
                     // Let user select account from menu

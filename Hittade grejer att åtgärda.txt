@@ -10,45 +10,21 @@ Login successful SLeep.
 
 Transfer " you do not have any money" sleep för kort
 
+inte se password utskrivet när man loggar in / till stjärnor
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Pilen i menyerna does not respond första gången man trycker
-
-När man loggar in kan man skriva användarnamn osm inte finns med i customerList.
-Och om en användare som finns skriver fel lösenord tre gånger. Så kan man försöka logga in igen efteråt och få tre nya försök.
-
-Eftersom Customers och Admins skapas som Customers och Admins, och inte som Users, så behöver inte User-klassen ha en virtual Menu() som ska overridas av Customers och Admins Menu(). Man kan ta bort User Menu(), och ta bort "override" i Customer Menu() och Admin Menu(). Vi har visserligen gjort polymorphism, men den har inte uppfyllt nåt ändamål.
+transfer money: "du har nu för över detta till detta".
 
 "How much money would you like to transfer?"
 Snyggt om man har valutan på kontot man skickar pengar från iställer för "money".
 
+nåt val att ta sig tillbaka från alla menyer
+
+exchange raten ska synas i set cyrrency menyn på varje valuta
+
 Ha med nån DateTime för transaktionerna. Så kan det synas i historyList också.
+
+Eftersom Customers och Admins skapas som Customers och Admins, och inte som Users, så behöver inte User-klassen ha en virtual Menu() som ska overridas av Customers och Admins Menu(). Man kan ta bort User Menu(), och ta bort "override" i Customer Menu() och Admin Menu(). Vi har visserligen gjort polymorphism, men den har inte uppfyllt nåt ändamål.
+
+
+
+
