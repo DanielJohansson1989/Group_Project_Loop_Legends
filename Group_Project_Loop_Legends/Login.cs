@@ -94,7 +94,7 @@ namespace Group_Project_Loop_Legends
                     else
                     {
                         Console.WriteLine("Login successful . . .");
-                        uCheck.Menu();
+                        uCheck.Menu(customerList);
                         break;
                     }
 
