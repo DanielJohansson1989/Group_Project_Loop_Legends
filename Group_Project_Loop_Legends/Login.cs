@@ -76,8 +76,9 @@ namespace Group_Project_Loop_Legends
                     else
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("Login successful . . .");
+                        Console.WriteLine("\nLogin successful . . .");
                         Console.ForegroundColor = ConsoleColor.White;
+                        Thread.Sleep(1500);
                         TriesLeft = 3;
                         uCheck.Menu();
                         break;
@@ -108,8 +109,9 @@ namespace Group_Project_Loop_Legends
                     else
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("Login successful . . .");
+                        Console.WriteLine("\nLogin successful . . .");
                         Console.ForegroundColor = ConsoleColor.White;
+                        Thread.Sleep(1500);
                         TriesLeft = 3;
                         uCheck.Menu(customerList);
                         break;
