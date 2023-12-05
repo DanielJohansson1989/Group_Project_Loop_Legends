@@ -24,8 +24,7 @@ namespace Group_Project_Loop_Legends
             Console.CursorVisible = false;
             Console.Write("-->");
             ConsoleKeyInfo navigator;
-            navigator = Console.ReadKey();
-            while (navigator.Key != ConsoleKey.Enter)
+            do
             {
                 navigator = Console.ReadKey();
                 Console.SetCursorPosition(0, y);
@@ -40,7 +39,7 @@ namespace Group_Project_Loop_Legends
                 }
                 Console.SetCursorPosition(0, y);
                 Console.Write("-->");
-            }
+            } while (navigator.Key != ConsoleKey.Enter);
 
             Console.Clear();
             Console.CursorVisible = true;
