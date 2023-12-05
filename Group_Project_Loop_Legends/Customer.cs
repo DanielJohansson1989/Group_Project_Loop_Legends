@@ -345,7 +345,7 @@ namespace Group_Project_Loop_Legends
                         if (temporaryAccounts[fromAccountPosition - 1].Balance - amountToTransfer < 0)
                         {
                             Console.WriteLine("The amount exceeds current balance!\nPlease enter a lower amount");
-                            Thread.Sleep(1500);
+                            Thread.Sleep(3000);
                         }
 
                     } while (temporaryAccounts[fromAccountPosition - 1].Balance - amountToTransfer < 0);
@@ -430,7 +430,7 @@ namespace Group_Project_Loop_Legends
                     {
                         Console.Clear();
                         Console.WriteLine("You do not have any money! Returning to menu...");
-                        Thread.Sleep(2000);
+                        Thread.Sleep(5000);
                         break;
                     }
 
@@ -513,7 +513,7 @@ namespace Group_Project_Loop_Legends
                         if (temporaryAccounts[fromAccountPosition - 1].Balance - amountToTransfer < 0)
                         {
                             Console.WriteLine("The amount exceeds current balance!\nPlease enter a lower amount");
-                            Thread.Sleep(1500);
+                            Thread.Sleep(3000);
                         }
 
                     } while (temporaryAccounts[fromAccountPosition - 1].Balance - amountToTransfer < 0);
