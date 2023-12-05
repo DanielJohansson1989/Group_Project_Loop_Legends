@@ -331,14 +331,14 @@ namespace Group_Project_Loop_Legends
                     do
                     {
                         Console.Clear();
-                        Console.WriteLine("How much money would you like to transfer?");
+                        Console.WriteLine($"How much money would you like to transfer? (Enter value in {temporaryAccounts[fromAccountPosition - 1].Currency})");
                         while (!double.TryParse(Console.ReadLine(), out amountToTransfer))
                         {
                             Console.Clear();
                             Console.WriteLine("Incorrect value");
                             Thread.Sleep(1500);
                             Console.Clear();
-                            Console.WriteLine("How much money would you like to transfer?");
+                            Console.WriteLine($"How much money would you like to transfer? (Enter value in {temporaryAccounts[fromAccountPosition - 1].Currency})");
                         }
 
                         // Check if there is enough balance in account to transfer from - Prints message if not
@@ -360,6 +360,11 @@ namespace Group_Project_Loop_Legends
                     accounts[fromAccountIndex].Balance -= amountToTransfer;
                     accounts[toAccountPosition - 1].Balance += amountInCorrectCurrency;
 
+                    Console.Clear();
+                    Console.WriteLine($"{amountToTransfer} {accounts[fromAccountIndex].Currency} transferred from {accounts[fromAccountIndex].AccountName} to {accounts[toAccountPosition - 1].AccountName}");
+
+                    Console.WriteLine("\nPress Enter to return to Menu.");
+                    Console.ReadLine();
 
                     // historyList.Add($"SEK {wantLoan,-15:N2}" + "loaned into" + $"          {accountList[cursorPosition - 4].AccountName}");
 
@@ -494,14 +499,14 @@ namespace Group_Project_Loop_Legends
                     do
                     {
                         Console.Clear();
-                        Console.WriteLine("How much money would you like to transfer?");
+                        Console.WriteLine($"How much money would you like to transfer? (Enter value in {temporaryAccounts[fromAccountPosition - 1].Currency})");
                         while (!double.TryParse(Console.ReadLine(), out amountToTransfer))
                         {
                             Console.Clear();
                             Console.WriteLine("Incorrect value");
                             Thread.Sleep(1500);
                             Console.Clear();
-                            Console.WriteLine("How much money would you like to transfer?");
+                            Console.WriteLine($"How much money would you like to transfer? (Enter value in {temporaryAccounts[fromAccountPosition - 1].Currency})");
                         }
 
                         // Check if there is enough balance in account to transfer from - Prints message if not
@@ -522,6 +527,12 @@ namespace Group_Project_Loop_Legends
                     // Do the actual transfer
                     accounts[fromAccountIndex].Balance -= amountToTransfer;
                     customerList[cursorPosition - 1]._accountList[toAccountPosition - 1].Balance += amountInCorrectCurrency;
+
+                    Console.Clear();
+                    Console.WriteLine($"{amountToTransfer} {accounts[fromAccountIndex].Currency} transferred from {accounts[fromAccountIndex].AccountName} to {customerList[cursorPosition - 1]._accountList[toAccountPosition - 1].AccountName}");
+
+                    Console.WriteLine("\nPress Enter to return to Menu.");
+                    Console.ReadLine();
 
                     // Saving transaction as history
                     historyList.Add($"{amountToTransfer} {accounts[fromAccountIndex].Currency} withdrawn from {accounts[fromAccountIndex].AccountName}");
