@@ -26,9 +26,8 @@ namespace Group_Project_Loop_Legends
             Console.CursorVisible = false;
             Console.Write("-->");
             ConsoleKeyInfo navigator;
-            navigator = Console.ReadKey();
 
-            while (navigator.Key != ConsoleKey.Enter)
+            do
             {
                 navigator = Console.ReadKey();
                 Console.SetCursorPosition(0, cursorPos);
@@ -46,9 +45,9 @@ namespace Group_Project_Loop_Legends
 
                 Console.SetCursorPosition(0, cursorPos);
                 Console.Write("-->");
-            }
+            } while (navigator.Key != ConsoleKey.Enter) ;
 
-            Console.Clear();
+                Console.Clear();
             switch (cursorPos)
             {
                 case 1:
@@ -113,9 +112,8 @@ namespace Group_Project_Loop_Legends
             Console.CursorVisible = false;
             Console.Write("-->");
             ConsoleKeyInfo navigator;
-            navigator = Console.ReadKey();
 
-            while (navigator.Key != ConsoleKey.Enter)
+            do
             {
                 navigator = Console.ReadKey();
                 Console.SetCursorPosition(0, cursorPos);
@@ -133,9 +131,9 @@ namespace Group_Project_Loop_Legends
 
                 Console.SetCursorPosition(0, cursorPos);
                 Console.Write("-->");
-            }
+            } while (navigator.Key != ConsoleKey.Enter);
 
-            string currency = "";
+                string currency = "";
 
             double currentRate = 0.0; 
 
