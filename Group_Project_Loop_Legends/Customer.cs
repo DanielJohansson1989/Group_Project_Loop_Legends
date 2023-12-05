@@ -370,7 +370,7 @@ namespace Group_Project_Loop_Legends
                     // historyList.Add($"SEK {wantLoan,-15:N2}" + "loaned into" + $"          {accountList[cursorPosition - 4].AccountName}");
 
                     // Saving transaction as history
-                    historyList.Add($"{accounts[fromAccountIndex].Currency}{amountToTransfer, -15:N2}withdrawn from          {accounts[fromAccountIndex].AccountName}");
+                    historyList.Add($"{accounts[fromAccountIndex].Currency} {amountToTransfer, -15:N2}withdrawn from        {accounts[fromAccountIndex].AccountName}");
                     historyList.Add($"{accounts[toAccountPosition - 1].Currency} {amountInCorrectCurrency, -15:N2}deposited to          {accounts[toAccountPosition - 1].AccountName}");
                     break;
 
@@ -536,8 +536,8 @@ namespace Group_Project_Loop_Legends
                     Console.ReadLine();
 
                     // Saving transaction as history
-                    historyList.Add($"{amountToTransfer} {accounts[fromAccountIndex].Currency} withdrawn from {accounts[fromAccountIndex].AccountName}");
-                    historyList.Add($"{amountInCorrectCurrency} {customerList[cursorPosition - 1]._accountList[toAccountPosition - 1].Currency} deposited to {customerList[cursorPosition - 1]._accountList[toAccountPosition - 1].AccountName}");
+                    historyList.Add($"{accounts[fromAccountIndex].Currency} {amountToTransfer, -15:N2}withdrawn from        {accounts[fromAccountIndex].AccountName}");
+                    historyList.Add($"{customerList[cursorPosition - 1]._accountList[toAccountPosition - 1].Currency} {amountInCorrectCurrency, -15:N2}deposited to          {customerList[cursorPosition - 1]._accountList[toAccountPosition - 1].AccountName}");
 
                     break;
             }
