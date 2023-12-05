@@ -12,7 +12,7 @@ namespace Group_Project_Loop_Legends
         {
             
         }     
-        public override void Menu()
+        public /*override*/ void Menu()
         {
             Console.Clear();
             Console.WriteLine($"Welcome, {_name}! Choose an option:");

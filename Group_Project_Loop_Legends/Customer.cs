@@ -18,7 +18,7 @@ namespace Group_Project_Loop_Legends
         public Customer(string _name, string _password) : base(_name, _password)
         {
         }
-        public override void Menu(List<Customer> customerList)
+        public /*override*/void Menu(List<Customer> customerList)
         {
             bool isRunning = true;
 
@@ -97,7 +97,7 @@ namespace Group_Project_Loop_Legends
 
         public void SeeAccounts()
         {
-            Console.WriteLine("Kontonamn                Saldo          Valuta\n");
+            Console.WriteLine("Account Name             Balance        Currency\n");
             foreach (Account item in _accountList)
             {
                 item.PrintAccounts();
