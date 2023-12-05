@@ -538,6 +538,10 @@ namespace Group_Project_Loop_Legends
                     // Saving transaction as history
                     historyList.Add($"{accounts[fromAccountIndex].Currency} {amountToTransfer, -15:N2}withdrawn from        {accounts[fromAccountIndex].AccountName}");
                     historyList.Add($"{customerList[cursorPosition - 1]._accountList[toAccountPosition - 1].Currency} {amountInCorrectCurrency, -15:N2}deposited to          {customerList[cursorPosition - 1]._accountList[toAccountPosition - 1].AccountName}");
+                    
+                    // Saving transaction in recipient's history
+                    customerList[cursorPosition - 1]._historyList.Add($"{accounts[fromAccountIndex].Currency} {amountToTransfer,-15:N2}withdrawn from        {accounts[fromAccountIndex].AccountName}");
+                    customerList[cursorPosition - 1]._historyList.Add($"{customerList[cursorPosition - 1]._accountList[toAccountPosition - 1].Currency} {amountInCorrectCurrency,-15:N2}deposited to          {customerList[cursorPosition - 1]._accountList[toAccountPosition - 1].AccountName}");
 
                     break;
             }
