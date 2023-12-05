@@ -262,7 +262,7 @@ namespace Group_Project_Loop_Legends
                     {
                         Console.Clear();
                         Console.WriteLine("You do not have any money! Returning to menu...");
-                        Thread.Sleep(3000);
+                        Thread.Sleep(5000);
                         break;
                     }
 
