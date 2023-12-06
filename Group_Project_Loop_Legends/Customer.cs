@@ -189,10 +189,11 @@ namespace Group_Project_Loop_Legends
         public void AccountHistory()
         {
             Console.Clear();
-            Console.WriteLine("SUM               ACTION          ACCOUNT\n");
+            Console.WriteLine("SUM                ACTION               ACCOUNT\n");
             foreach (string transaction in _historyList)
             {
                 Console.WriteLine(transaction);
+                Console.WriteLine("-");
             }
             Console.WriteLine("\nPress Enter to return to Menu");
             Console.ReadLine();
@@ -369,8 +370,8 @@ namespace Group_Project_Loop_Legends
                     // historyList.Add($"SEK {wantLoan,-15:N2}" + "loaned into" + $"          {accountList[cursorPosition - 4].AccountName}");
 
                     // Saving transaction as history
-                    historyList.Add($"{accounts[fromAccountIndex].Currency} {amountToTransfer, -15:N2}withdrawn from        {accounts[fromAccountIndex].AccountName}");
-                    historyList.Add($"{accounts[toAccountPosition - 1].Currency} {amountInCorrectCurrency, -15:N2}deposited to          {accounts[toAccountPosition - 1].AccountName}");
+                    historyList.Add($"{accounts[fromAccountIndex].Currency} {amountToTransfer, -15:N2}withdrawn from       {accounts[fromAccountIndex].AccountName}");
+                    historyList.Add($"{accounts[toAccountPosition - 1].Currency} {amountInCorrectCurrency, -15:N2}deposited to         {accounts[toAccountPosition - 1].AccountName}");
                     break;
 
                 case 1: // Transfer between other users accounts
@@ -565,11 +566,11 @@ namespace Group_Project_Loop_Legends
                         withdrawAccount.Balance -= withdrawAmount;
                         depositAccount.Balance += depositAmount;
 
-                        senderHistory.Add($"{withdrawAccount.Currency} {withdrawAmount,-15:N2}withdrawn from          {withdrawAccount.AccountName}");
-                        senderHistory.Add($"{depositAccount.Currency} {depositAmount,-15:N2}deposited to          {depositAccount.AccountName}");
+                        senderHistory.Add($"{withdrawAccount.Currency} {withdrawAmount,-15:N2}withdrawn from       {withdrawAccount.AccountName}");
+                        senderHistory.Add($"{depositAccount.Currency} {depositAmount,-15:N2}deposited to         {depositAccount.AccountName}");
 
-                        receiverHistory.Add($"{withdrawAccount.Currency} {withdrawAmount,-15:N2}withdrawn from          {withdrawAccount.AccountName}");
-                        receiverHistory.Add($"{depositAccount.Currency} {depositAmount,-15:N2}deposited to          {depositAccount.AccountName}");
+                        receiverHistory.Add($"{withdrawAccount.Currency} {withdrawAmount,-15:N2}withdrawn from       {withdrawAccount.AccountName}");
+                        receiverHistory.Add($"{depositAccount.Currency} {depositAmount,-15:N2}deposited to         {depositAccount.AccountName}");
                     }
 
                     else
