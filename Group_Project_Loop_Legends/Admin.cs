@@ -12,7 +12,7 @@ namespace Group_Project_Loop_Legends
         {
             
         }     
-        public override void Menu()
+        public /*override*/ void Menu()
         {
             Console.Clear();
             Console.WriteLine($"Welcome, {_name}! Choose an option:");
@@ -59,12 +59,17 @@ namespace Group_Project_Loop_Legends
                     string userName = Console.ReadLine();
                     while (userName.Length > 30 || userName.Length < 1)
                     {
-                        Console.WriteLine("Please Enter a name shorter than 31 characters and longer than zero characters");
+                        Console.WriteLine("Please enter a name shorter than 31 characters and longer than 0 characters");
                         userName = Console.ReadLine();
                     }
                     Console.WriteLine("Enter a password");
                     Console.Write(": ");
                     string userPassword = Console.ReadLine();
+                    while(userPassword.Length > 30 || userPassword.Length < 3)
+                    {
+                        Console.WriteLine("Please enter a password shorter than 31 characters and longer than 3 characters");
+                        userPassword = Console.ReadLine();
+                    }
                     Console.WriteLine("Confirm password");
                     Console.Write(": ");
                     string confirmPassword = Console.ReadLine();
@@ -99,12 +104,12 @@ namespace Group_Project_Loop_Legends
         }
         public void SetNewCurrency()
         {
-            Console.WriteLine("Enter the currency to update: ");
-            Console.WriteLine("    1.SEK");
-            Console.WriteLine("    2.USD");
-            Console.WriteLine("    3.EURO");
-            Console.WriteLine("    4.GBP");
-            Console.WriteLine("    5.JPY");
+            Console.WriteLine("Choose the currency to update: ");
+            Console.WriteLine($"    1.SEK: {CurrencyConverter._sekRate}");
+            Console.WriteLine($"    2.USD: {CurrencyConverter._usdRate}");
+            Console.WriteLine($"    3.EURO: {CurrencyConverter._euroRate}");
+            Console.WriteLine($"    4.GBP: {CurrencyConverter._gbpRate}");
+            Console.WriteLine($"    5.JPY: {CurrencyConverter._jpyRate}");
 
             int cursorPos = 1;
 
