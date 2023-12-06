@@ -60,14 +60,36 @@ namespace Group_Project_Loop_Legends
                     Console.Write("Username: ");
                     string username = Console.ReadLine();
                     Console.Write("Password: ");
-                    string password = Console.ReadLine();
+                    //string password = Console.ReadLine();
+
+                    //making char to '*'
+                    string password = string.Empty;
+                    ConsoleKey key;
+                    do
+                    {
+                        var keyInfo = Console.ReadKey(intercept: true);
+                        key = keyInfo.Key;
+
+                        if (key == ConsoleKey.Backspace && password.Length > 0)
+                        {
+                            Console.Write("\b \b");
+                            password = password[0..^1];
+                        }
+                        else if (!char.IsControl(keyInfo.KeyChar))
+                        {
+                            Console.Write("*");
+                            password += keyInfo.KeyChar;
+                        }
+                    } while (key != ConsoleKey.Enter);
+
+
 
                     Admin uCheck = adminList.Find(e => e._name == username);
                     
                     if (uCheck == null || uCheck._password != password)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Invalid username or password. Please try again.");
+                        Console.WriteLine("\n\nInvalid username or password. Please try again.");
                         Console.ForegroundColor = ConsoleColor.White;
                         TriesLeft--;
                         Console.WriteLine($"{TriesLeft} tries left");
@@ -76,7 +98,7 @@ namespace Group_Project_Loop_Legends
                     else
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("\nLogin successful . . .");
+                        Console.WriteLine("\n\nLogin successful . . .");
                         Console.ForegroundColor = ConsoleColor.White;
                         Thread.Sleep(1500);
                         TriesLeft = 3;
@@ -93,14 +115,36 @@ namespace Group_Project_Loop_Legends
                     Console.Write("Username: ");
                     string username = Console.ReadLine();
                     Console.Write("Password: ");
-                    string password = Console.ReadLine();
+                    //string password = Console.ReadLine();
+
+                    //making char to '*'
+                    string password = string.Empty;
+                    ConsoleKey key;
+                    do
+                    {
+                        var keyInfo = Console.ReadKey(intercept: true);
+                        key = keyInfo.Key;
+
+                        if (key == ConsoleKey.Backspace && password.Length > 0)
+                        {
+                            Console.Write("\b \b");
+                            password = password[0..^1];
+                        }
+                        else if (!char.IsControl(keyInfo.KeyChar))
+                        {
+                            Console.Write("*");
+                            password += keyInfo.KeyChar;
+                        }
+                    } while (key != ConsoleKey.Enter);
+
+
 
                     Customer uCheck = customerList.Find(e => e._name == username);
 
                     if (uCheck == null || uCheck._password != password)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Invalid username or password. Please try again.");
+                        Console.WriteLine("\n\nInvalid username or password. Please try again.");
                         Console.ForegroundColor = ConsoleColor.White;
                         TriesLeft--;
                         Console.WriteLine($"{TriesLeft} tries left");
@@ -109,7 +153,7 @@ namespace Group_Project_Loop_Legends
                     else
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("\nLogin successful . . .");
+                        Console.WriteLine("\n\nLogin successful . . .");
                         Console.ForegroundColor = ConsoleColor.White;
                         Thread.Sleep(1500);
                         TriesLeft = 3;
