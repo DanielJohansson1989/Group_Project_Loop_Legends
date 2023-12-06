@@ -530,7 +530,7 @@ namespace Group_Project_Loop_Legends
                     Console.WriteLine("\nPress Enter to return to Menu.");
                     Console.ReadLine();
 
-                    Task.Run(() => HandleTransaction(accounts[fromAccountIndex], customerList[cursorPosition - 1]._accountList[toAccountPosition], amountToTransfer, amountInCorrectCurrency, historyList, customerList[cursorPosition - 1]._historyList));
+                    Task.Run(() => HandleTransaction(accounts[fromAccountIndex], customerList[cursorPosition - 1]._accountList[toAccountPosition - 1], amountToTransfer, amountInCorrectCurrency, historyList, customerList[cursorPosition - 1]._historyList));
                     
                     // Do the actual transfer
                    // accounts[fromAccountIndex].Balance -= amountToTransfer;
@@ -551,25 +551,35 @@ namespace Group_Project_Loop_Legends
 
         public void HandleTransaction(Account withdrawAccount, Account depositAccount, double withdrawAmount, double depositAmount, List<string> senderHistory, List<string> receiverHistory)
         {
-            Thread.Sleep(60000);
-            if (withdrawAccount.Balance - withdrawAmount >= 0)
+            bool doTransaction = false;
+            
+            while (doTransaction == false)
             {
-                withdrawAccount.Balance -= withdrawAmount;
-                depositAccount.Balance += depositAmount;
 
-                senderHistory.Add($"{withdrawAccount.Currency} {withdrawAmount,-15:N2}withdrawn from          {withdrawAccount.AccountName}");
-                senderHistory.Add($"{depositAccount.Currency} {depositAmount,-15:N2}deposited to          {depositAccount.AccountName}");
+            DateTime minutes = DateTime.Now;
 
-                receiverHistory.Add($"{withdrawAccount.Currency} {withdrawAmount,-15:N2}withdrawn from          {withdrawAccount.AccountName}");
-                receiverHistory.Add($"{depositAccount.Currency} {depositAmount,-15:N2}deposited to          {depositAccount.AccountName}");
+                if (minutes.Minute % 5 == 0)
+                {
+                    if (withdrawAccount.Balance - withdrawAmount >= 0)
+                    {
+                        withdrawAccount.Balance -= withdrawAmount;
+                        depositAccount.Balance += depositAmount;
+
+                        senderHistory.Add($"{withdrawAccount.Currency} {withdrawAmount,-15:N2}withdrawn from          {withdrawAccount.AccountName}");
+                        senderHistory.Add($"{depositAccount.Currency} {depositAmount,-15:N2}deposited to          {depositAccount.AccountName}");
+
+                        receiverHistory.Add($"{withdrawAccount.Currency} {withdrawAmount,-15:N2}withdrawn from          {withdrawAccount.AccountName}");
+                        receiverHistory.Add($"{depositAccount.Currency} {depositAmount,-15:N2}deposited to          {depositAccount.AccountName}");
+                    }
+
+                    else
+                    {
+                        senderHistory.Add($"{withdrawAccount.Currency} {withdrawAmount,-14:N2} canceled due to not enough balance");
+                    }
+                    doTransaction = true;
+                }
+            Thread.Sleep(59000);
             }
-
-            else
-            {
-                senderHistory.Add($"{withdrawAccount.Currency} {withdrawAmount,-14:N2} canceled due to not enough balance");
-            }
-
-
         }
         ////////////////////////////////////////////// 5. Loan Money //////////////////////////////////////////////
         
