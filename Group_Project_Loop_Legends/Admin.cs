@@ -15,16 +15,20 @@ namespace Group_Project_Loop_Legends
         public /*override*/ void Menu()
         {
             Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine($"Welcome, {_name}! Choose an option:");
-            Console.WriteLine("    1.Set New Currency");
-            Console.WriteLine("    2.Create New Customer");
-            Console.WriteLine("    3.Log Out");
+            Console.ResetColor();
+            Console.WriteLine("    Set New Currency");
+            Console.WriteLine("    Create New Customer");
+            Console.WriteLine("    Log Out");
 
             int cursorPos = 1;
 
             Console.SetCursorPosition(0, cursorPos);
             Console.CursorVisible = false;
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write("-->");
+            Console.ResetColor();
             ConsoleKeyInfo navigator;
 
             do
@@ -44,7 +48,9 @@ namespace Group_Project_Loop_Legends
                 }
 
                 Console.SetCursorPosition(0, cursorPos);
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.Write("-->");
+                Console.ResetColor();
             } while (navigator.Key != ConsoleKey.Enter) ;
 
                 Console.Clear();

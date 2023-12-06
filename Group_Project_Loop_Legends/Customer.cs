@@ -25,21 +25,25 @@ namespace Group_Project_Loop_Legends
             while (isRunning)
             {
                 Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine($"Welcome, {_name}! Choose an option:");
+                Console.ResetColor();
 
-                Console.WriteLine("    1.See Your Accounts");
-                Console.WriteLine("    2.Create New Account");
-                Console.WriteLine("    3.Show Account History");
-                Console.WriteLine("    4.Transfer Money");
-                Console.WriteLine("    5.Loan Money");
-                Console.WriteLine("    6.Log Out ");
+                Console.WriteLine("    See Your Accounts");
+                Console.WriteLine("    Create New Account");
+                Console.WriteLine("    Show Account History");
+                Console.WriteLine("    Transfer Money");
+                Console.WriteLine("    Loan Money");
+                Console.WriteLine("    Log Out ");
 
                 int cursorPos = 1;
 
 
                 Console.SetCursorPosition(0, cursorPos);
                 Console.CursorVisible = false;
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.Write("-->");
+                Console.ResetColor();
                 ConsoleKeyInfo navigator;
 
                 do
@@ -59,7 +63,9 @@ namespace Group_Project_Loop_Legends
                     }
 
                     Console.SetCursorPosition(0, cursorPos);
+                    Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.Write("-->");
+                    Console.ResetColor();
                 } while (navigator.Key != ConsoleKey.Enter) ;
 
                     Console.Clear();
