@@ -524,29 +524,53 @@ namespace Group_Project_Loop_Legends
                     // Find correct index on the account where money is withdrawn from
                     fromAccountIndex = accounts.IndexOf(temporaryAccounts[fromAccountPosition - 1]);
 
-                    // Do the actual transfer
-                    accounts[fromAccountIndex].Balance -= amountToTransfer;
-                    customerList[cursorPosition - 1]._accountList[toAccountPosition - 1].Balance += amountInCorrectCurrency;
-
                     Console.Clear();
                     Console.WriteLine($"{amountToTransfer} {accounts[fromAccountIndex].Currency} transferred from {accounts[fromAccountIndex].AccountName} to {customerList[cursorPosition - 1]._accountList[toAccountPosition - 1].AccountName}");
 
                     Console.WriteLine("\nPress Enter to return to Menu.");
                     Console.ReadLine();
 
+                    Task.Run(() => HandleTransaction(accounts[fromAccountIndex], customerList[cursorPosition - 1]._accountList[toAccountPosition], amountToTransfer, amountInCorrectCurrency, historyList, customerList[cursorPosition - 1]._historyList));
+                    
+                    // Do the actual transfer
+                   // accounts[fromAccountIndex].Balance -= amountToTransfer;
+                   // customerList[cursorPosition - 1]._accountList[toAccountPosition - 1].Balance += amountInCorrectCurrency;
+
+
                     // Saving transaction as history
-                    historyList.Add($"{accounts[fromAccountIndex].Currency} {amountToTransfer, -15:N2}withdrawn from        {accounts[fromAccountIndex].AccountName}");
-                    historyList.Add($"{customerList[cursorPosition - 1]._accountList[toAccountPosition - 1].Currency} {amountInCorrectCurrency, -15:N2}deposited to          {customerList[cursorPosition - 1]._accountList[toAccountPosition - 1].AccountName}");
+                   // historyList.Add($"{accounts[fromAccountIndex].Currency} {amountToTransfer, -15:N2}withdrawn from        {accounts[fromAccountIndex].AccountName}");
+                   // historyList.Add($"{customerList[cursorPosition - 1]._accountList[toAccountPosition - 1].Currency} {amountInCorrectCurrency, -15:N2}deposited to          {customerList[cursorPosition - 1]._accountList[toAccountPosition - 1].AccountName}");
                     
                     // Saving transaction in recipient's history
-                    customerList[cursorPosition - 1]._historyList.Add($"{accounts[fromAccountIndex].Currency} {amountToTransfer,-15:N2}withdrawn from        {accounts[fromAccountIndex].AccountName}");
-                    customerList[cursorPosition - 1]._historyList.Add($"{customerList[cursorPosition - 1]._accountList[toAccountPosition - 1].Currency} {amountInCorrectCurrency,-15:N2}deposited to          {customerList[cursorPosition - 1]._accountList[toAccountPosition - 1].AccountName}");
+                    //customerList[cursorPosition - 1]._historyList.Add($"{accounts[fromAccountIndex].Currency} {amountToTransfer,-15:N2}withdrawn from        {accounts[fromAccountIndex].AccountName}");
+                    //customerList[cursorPosition - 1]._historyList.Add($"{customerList[cursorPosition - 1]._accountList[toAccountPosition - 1].Currency} {amountInCorrectCurrency,-15:N2}deposited to          {customerList[cursorPosition - 1]._accountList[toAccountPosition - 1].AccountName}");
 
                     break;
             }
         }
 
+        public void HandleTransaction(Account withdrawAccount, Account depositAccount, double withdrawAmount, double depositAmount, List<string> senderHistory, List<string> receiverHistory)
+        {
+            Thread.Sleep(60000);
+            if (withdrawAccount.Balance - withdrawAmount >= 0)
+            {
+                withdrawAccount.Balance -= withdrawAmount;
+                depositAccount.Balance += depositAmount;
 
+                senderHistory.Add($"{withdrawAccount.Currency} {withdrawAmount,-15:N2}withdrawn from          {withdrawAccount.AccountName}");
+                senderHistory.Add($"{depositAccount.Currency} {depositAmount,-15:N2}deposited to          {depositAccount.AccountName}");
+
+                receiverHistory.Add($"{withdrawAccount.Currency} {withdrawAmount,-15:N2}withdrawn from          {withdrawAccount.AccountName}");
+                receiverHistory.Add($"{depositAccount.Currency} {depositAmount,-15:N2}deposited to          {depositAccount.AccountName}");
+            }
+
+            else
+            {
+                senderHistory.Add($"{withdrawAccount.Currency} {withdrawAmount,-14:N2} canceled due to not enough balance");
+            }
+
+
+        }
         ////////////////////////////////////////////// 5. Loan Money //////////////////////////////////////////////
         
         
