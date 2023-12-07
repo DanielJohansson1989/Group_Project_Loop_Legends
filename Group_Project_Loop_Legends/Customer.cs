@@ -400,7 +400,7 @@ namespace Group_Project_Loop_Legends
 
             DateTime minutes = DateTime.Now;
 
-                if (minutes.Minute % 5 == 0)
+                if (minutes.Minute % 1 == 0)
                 {
                     if (withdrawAccount.Balance - withdrawAmount >= 0)
                     {
@@ -426,6 +426,8 @@ namespace Group_Project_Loop_Legends
             Thread.Sleep(59000);
             }
         }
+        
+        
         ////////////////////////////////////////////// 5. Loan Money //////////////////////////////////////////////
         
         
