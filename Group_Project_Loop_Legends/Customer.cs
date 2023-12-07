@@ -18,7 +18,7 @@ namespace Group_Project_Loop_Legends
         public Customer(string _name, string _password) : base(_name, _password)
         {
         }
-        public /*override*/void Menu(List<Customer> customerList)
+        public void Menu(List<Customer> customerList)
         {
             bool isRunning = true;
 
@@ -400,7 +400,7 @@ namespace Group_Project_Loop_Legends
 
             DateTime minutes = DateTime.Now;
 
-                if (minutes.Minute % 1 == 0)
+                if (minutes.Minute % 5 == 0)
                 {
                     if (withdrawAccount.Balance - withdrawAmount >= 0)
                     {

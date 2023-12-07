@@ -12,7 +12,7 @@ namespace Group_Project_Loop_Legends
         {
             
         }     
-        public /*override*/ void Menu()
+        public void Menu()
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -89,7 +89,8 @@ namespace Group_Project_Loop_Legends
                         Console.WriteLine("\nPress Enter to return to the menu");
                         Console.ReadKey();
 
-                        UserManager.AddCustomer(userName, userPassword);                        
+                        UserManager.AddCustomer(userName, userPassword);
+                        Menu();
                     }
                     else
                     {
