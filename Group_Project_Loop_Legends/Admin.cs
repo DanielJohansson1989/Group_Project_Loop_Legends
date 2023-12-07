@@ -226,14 +226,19 @@ namespace Group_Project_Loop_Legends
         public static void ShowBankAssets()
         {
             double sumOfAllAccounts = 0;
-            double sumOfLoans;
+            double sumOfLoans = 0;
 
             foreach (Customer customer in UserManager.customerList)
             {
                 sumOfAllAccounts += CurrencyConverter.TotalAsset(customer.AccountList);
             }
 
-            Console.WriteLine($"Total assets: {sumOfAllAccounts:N2} SEK");
+            foreach (Customer customer in UserManager.customerList)
+            {
+                sumOfLoans += customer.Credit;
+            }
+
+            Console.WriteLine($"Total balance of all accounts: {sumOfAllAccounts:N2} SEK \nSum of all loans: {sumOfLoans:N2} SEK \nBank's total assets: {sumOfAllAccounts - sumOfLoans:N2} SEK");
 
             Console.WriteLine("\nPress Enter to return to Menu");
             Console.ReadKey();
