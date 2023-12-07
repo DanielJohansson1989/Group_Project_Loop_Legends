@@ -16,16 +16,5 @@ namespace Group_Project_Loop_Legends
             this._name = name;
             this._password = password;            
         }
-
-
-        //public virtual void Menu()
-        //{
-
-        //}
-
-        //public virtual void Menu(List<Customer> customerList)
-        //{
-
-        //}
     }
 }

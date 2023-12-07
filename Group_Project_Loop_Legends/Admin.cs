@@ -12,7 +12,7 @@ namespace Group_Project_Loop_Legends
         {
             
         }     
-        public /*override*/ void Menu()
+        public void Menu()
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Yellow;
