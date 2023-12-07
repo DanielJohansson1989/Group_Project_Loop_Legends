@@ -112,11 +112,11 @@ namespace Group_Project_Loop_Legends
         public void SetNewCurrency()
         {
             Console.WriteLine("Choose the currency to update: ");
-            Console.WriteLine($"    1.SEK: {CurrencyConverter._sekRate}");
-            Console.WriteLine($"    2.USD: {CurrencyConverter._usdRate}");
-            Console.WriteLine($"    3.EURO: {CurrencyConverter._euroRate}");
-            Console.WriteLine($"    4.GBP: {CurrencyConverter._gbpRate}");
-            Console.WriteLine($"    5.JPY: {CurrencyConverter._jpyRate}");
+            Console.WriteLine($"    SEK: {CurrencyConverter._sekRate}");
+            Console.WriteLine($"    USD: {CurrencyConverter._usdRate}");
+            Console.WriteLine($"    EURO: {CurrencyConverter._euroRate}");
+            Console.WriteLine($"    GBP: {CurrencyConverter._gbpRate}");
+            Console.WriteLine($"    JPY: {CurrencyConverter._jpyRate}");
 
             int cursorPos = 1;
 
