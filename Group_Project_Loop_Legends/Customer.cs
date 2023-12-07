@@ -566,5 +566,9 @@ namespace Group_Project_Loop_Legends
             get { return _credit; }
             set { _credit = value; }
         }
+
+        public List<string> HistoryList { get { return _historyList; } }
+
+        public List<Account> AccountList { get { return _accountList; } }
     }
 }
