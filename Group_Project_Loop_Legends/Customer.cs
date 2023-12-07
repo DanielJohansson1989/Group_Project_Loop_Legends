@@ -455,7 +455,7 @@ namespace Group_Project_Loop_Legends
                     try
                     {
                         wantLoan = Convert.ToDouble(Console.ReadLine());
-                        if(wantLoan > 0)
+                        if(wantLoan >= 0)
                             break;
                         else
                             Console.WriteLine("You can not loan a negative amount.");
@@ -523,7 +523,7 @@ namespace Group_Project_Loop_Legends
                 historyList.Add($"SEK {wantLoan, -15:N2}loaned into          {accountList[cursorPosition - 4].AccountName}");
                 
                 Console.WriteLine($"You have now loaned {wantLoan} SEK and inserted it into {accountList[cursorPosition - 4].AccountName}");
-                Console.WriteLine($"\nBalance before loan: {balanceBeforeLoan} {accountList[cursorPosition - 4].Currency}");
+                Console.WriteLine($"\nBalance before loan: {balanceBeforeLoan:N2} {accountList[cursorPosition - 4].Currency}");
                 Console.WriteLine($"Balance after loan : {accountList[cursorPosition - 4].Balance:N2} {accountList[cursorPosition - 4].Currency}");
 
             }
