@@ -89,7 +89,8 @@ namespace Group_Project_Loop_Legends
                         Console.WriteLine("\nPress Enter to return to the menu");
                         Console.ReadKey();
 
-                        UserManager.AddCustomer(userName, userPassword);                        
+                        UserManager.AddCustomer(userName, userPassword);
+                        Menu();
                     }
                     else
                     {
