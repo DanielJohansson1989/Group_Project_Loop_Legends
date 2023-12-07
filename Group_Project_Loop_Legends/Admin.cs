@@ -111,14 +111,17 @@ namespace Group_Project_Loop_Legends
         }
         public void SetNewCurrency()
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Choose the currency to update: ");
-            Console.WriteLine($"    SEK: {CurrencyConverter._sekRate}");
-            Console.WriteLine($"    USD: {CurrencyConverter._usdRate}");
-            Console.WriteLine($"    EURO: {CurrencyConverter._euroRate}");
-            Console.WriteLine($"    GBP: {CurrencyConverter._gbpRate}");
-            Console.WriteLine($"    JPY: {CurrencyConverter._jpyRate}");
+            Console.WriteLine("\n   CURRENCY    EXCHANGE RATE");
+            Console.ResetColor();
+            Console.WriteLine($"    SEK:        {CurrencyConverter._sekRate}");
+            Console.WriteLine($"    USD:        {CurrencyConverter._usdRate}");
+            Console.WriteLine($"    EURO:       {CurrencyConverter._euroRate}");
+            Console.WriteLine($"    GBP:        {CurrencyConverter._gbpRate}");
+            Console.WriteLine($"    JPY:        {CurrencyConverter._jpyRate}");
 
-            int cursorPos = 1;
+            int cursorPos = 3;
 
             Console.SetCursorPosition(0, cursorPos);
             Console.CursorVisible = false;
@@ -131,12 +134,12 @@ namespace Group_Project_Loop_Legends
                 Console.SetCursorPosition(0, cursorPos);
                 Console.Write("   ");
 
-                if (navigator.Key == ConsoleKey.UpArrow && cursorPos > 1)
+                if (navigator.Key == ConsoleKey.UpArrow && cursorPos > 3)
                 {
                     cursorPos--;
                 }
 
-                else if (navigator.Key == ConsoleKey.DownArrow && cursorPos < 5)
+                else if (navigator.Key == ConsoleKey.DownArrow && cursorPos < 7)
                 {
                     cursorPos++;
                 }
