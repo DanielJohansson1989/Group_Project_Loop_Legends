@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.Design;
 using System.Linq;
@@ -34,7 +35,8 @@ namespace Group_Project_Loop_Legends
                 Console.WriteLine("    Show Account History");
                 Console.WriteLine("    Transfer Money");
                 Console.WriteLine("    Loan Money");
-                Console.WriteLine("    Log Out ");
+                Console.WriteLine("    Settings");
+                Console.WriteLine("    Log Out");
 
                 int cursorPos = 1;
 
@@ -57,7 +59,7 @@ namespace Group_Project_Loop_Legends
                         cursorPos--;
                     }
 
-                    else if (navigator.Key == ConsoleKey.DownArrow && cursorPos < 6)
+                    else if (navigator.Key == ConsoleKey.DownArrow && cursorPos < 7)
                     {
                         cursorPos++;
                     }
@@ -87,6 +89,9 @@ namespace Group_Project_Loop_Legends
                         LoanMoney(_accountList, _credit, _historyList);
                         break;
                     case 6:
+                        Settings();
+                        break;
+                    case 7:
                         LogOut(); isRunning = false;
                         break;
                     default:
@@ -536,8 +541,65 @@ namespace Group_Project_Loop_Legends
             Console.ReadLine();
         }
 
+        //////////////////////////////////////////// 6. Settings /////////////////////////////////////////////////
+        
+        public void Settings()
+        {
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("    Settings");
+            Console.ResetColor();
+            Console.WriteLine("    Handle warning messeages");
+            Console.WriteLine("    Create a Two-Factor authentication");
+            Console.ResetColor();
 
-        //////////////////////////////////////////// 6. Log Out /////////////////////////////////////////////////
+            int cursorPos = 1;
+
+
+            Console.SetCursorPosition(0, cursorPos);
+            Console.CursorVisible = false;
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write("-->");
+            Console.ResetColor();
+            ConsoleKeyInfo navigator;
+
+            do
+            {
+                navigator = Console.ReadKey();
+                Console.SetCursorPosition(0, cursorPos);
+                Console.Write("   ");
+
+                if (navigator.Key == ConsoleKey.UpArrow && cursorPos > 1)
+                {
+                    cursorPos--;
+                }
+
+                else if (navigator.Key == ConsoleKey.DownArrow && cursorPos < 2)
+                {
+                    cursorPos++;
+                }
+
+                Console.SetCursorPosition(0, cursorPos);
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.Write("-->");
+                Console.ResetColor();
+            } while (navigator.Key != ConsoleKey.Enter);
+
+            Console.Clear();
+            switch (cursorPos)
+            {
+                case 1:
+                    Console.WriteLine("Do you want a warning message if your balance exceeds 1000 kr?");
+                    break;
+                case 2:
+                    
+                    break;
+            }
+            Console.WriteLine("\nPress Enter to return to Menu.");
+            Console.ReadLine();
+        }
+
+        //////////////////////////////////////////// 7. Log Out /////////////////////////////////////////////////
 
 
         public static void LogOut()
