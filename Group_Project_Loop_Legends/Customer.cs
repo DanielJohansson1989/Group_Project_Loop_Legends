@@ -360,14 +360,20 @@ namespace Group_Project_Loop_Legends
                         Console.WriteLine($"How much money would you like to transfer? (Enter value in {temporaryAccounts[fromAccountPosition - 1].Currency})");
                     }
 
+                    if (amountToTransfer < 0)
+                    {
+                        Console.WriteLine("Can not tranfer a negativ amount!\nPlease enter a positive value");
+                        Thread.Sleep(3000);
+                    }   
+                    
                     // Check if there is enough balance in account to transfer from - Prints message if not
-                    if (temporaryAccounts[fromAccountPosition - 1].Balance - amountToTransfer < 0)
+                    else if (temporaryAccounts[fromAccountPosition - 1].Balance - amountToTransfer < 0)
                     {
                         Console.WriteLine("The amount exceeds current balance!\nPlease enter a lower amount");
                         Thread.Sleep(3000);
                     }
 
-                } while (temporaryAccounts[fromAccountPosition - 1].Balance - amountToTransfer < 0);
+                } while (temporaryAccounts[fromAccountPosition - 1].Balance - amountToTransfer < 0 || amountToTransfer < 0);
 
                 // Convert the amount to correct currency
                 double amountInCorrectCurrency = CurrencyConverter.ConvertCurrency(temporaryAccounts[fromAccountPosition - 1], recipients[cursorPosition - 1]._accountList[toAccountPosition - 1], amountToTransfer);
