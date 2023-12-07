@@ -20,6 +20,7 @@ namespace Group_Project_Loop_Legends
             Console.ResetColor();
             Console.WriteLine("    Set New Currency");
             Console.WriteLine("    Create New Customer");
+            Console.WriteLine("    See Total Assets");
             Console.WriteLine("    Log Out");
 
             int cursorPos = 1;
@@ -42,7 +43,7 @@ namespace Group_Project_Loop_Legends
                     cursorPos--;
                 }
 
-                else if (navigator.Key == ConsoleKey.DownArrow && cursorPos < 3)
+                else if (navigator.Key == ConsoleKey.DownArrow && cursorPos < 4)
                 {
                     cursorPos++;
                 }
@@ -104,6 +105,10 @@ namespace Group_Project_Loop_Legends
                     }
                     break;
                 case 3:
+                    ShowBankAssets();
+                    Menu();
+                    break;
+                case 4:
                     LogOut();
                     break;
             }
@@ -154,23 +159,23 @@ namespace Group_Project_Loop_Legends
 
             switch (cursorPos)
             {
-                case 1:
+                case 3:
                     currency = "SEK";
                     currentRate = CurrencyConverter._sekRate;
                     break;
-                case 2:
+                case 4:
                     currency = "USD";
                     currentRate = CurrencyConverter._usdRate;
                     break;
-                case 3:
+                case 5:
                     currency = "EURO";
                     currentRate = CurrencyConverter._euroRate;
                     break;
-                case 4:
+                case 6:
                     currency = "GBP";
                     currentRate = CurrencyConverter._gbpRate;
                     break;
-                case 5:
+                case 7:
                     currency = "JPY";
                     currentRate = CurrencyConverter._jpyRate;
                     break;
@@ -216,6 +221,27 @@ namespace Group_Project_Loop_Legends
             Console.WriteLine("\nPress Enter to return to the menu");
             Console.ReadKey();
             Menu();
+        }
+
+        public static void ShowBankAssets()
+        {
+            double sumOfAllAccounts = 0;
+            double sumOfLoans = 0;
+
+            foreach (Customer customer in UserManager.customerList)
+            {
+                sumOfAllAccounts += CurrencyConverter.TotalAsset(customer.AccountList);
+            }
+
+            foreach (Customer customer in UserManager.customerList)
+            {
+                sumOfLoans += customer.Credit;
+            }
+
+            Console.WriteLine($"Total balance of all accounts: {sumOfAllAccounts:N2} SEK \nSum of all loans: {sumOfLoans:N2} SEK \nBank's total assets: {sumOfAllAccounts - sumOfLoans:N2} SEK");
+
+            Console.WriteLine("\nPress Enter to return to Menu");
+            Console.ReadKey();
         }
 
         public static void LogOut()
