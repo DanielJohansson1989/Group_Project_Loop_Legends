@@ -121,6 +121,7 @@ namespace Group_Project_Loop_Legends
         {
             Console.Clear();
             Console.WriteLine("Name of the account (max 23 characters):");
+            Console.CursorVisible = true;
             string accountName = Console.ReadLine();
 
             while (accountName.Length > 23 || accountName.Length < 1)
@@ -286,7 +287,6 @@ namespace Group_Project_Loop_Legends
 
                 int cursorPosition = 1;
                 Console.SetCursorPosition(0, cursorPosition);
-                Console.CursorVisible = false;
                 Console.Write("-->");
 
                 do
@@ -322,7 +322,6 @@ namespace Group_Project_Loop_Legends
                 // Let user select an account
                 int toAccountPosition = 1;
                 Console.SetCursorPosition(0, toAccountPosition);
-                Console.CursorVisible = false;
                 Console.Write("-->");
 
                 do
@@ -350,15 +349,21 @@ namespace Group_Project_Loop_Legends
                 do
                 {
                     Console.Clear();
-                    Console.WriteLine($"How much money would you like to transfer? (Enter value in {temporaryAccounts[fromAccountPosition - 1].Currency})");
+                    Console.CursorVisible = true;
+                    Console.WriteLine($"Currently there are no currency conversion fee\n\nHow much money would you like to transfer? (Enter value in {temporaryAccounts[fromAccountPosition - 1].Currency})");
+                    
                     while (!double.TryParse(Console.ReadLine(), out amountToTransfer))
                     {
                         Console.Clear();
+                        Console.CursorVisible = false;
                         Console.WriteLine("Incorrect value");
                         Thread.Sleep(1500);
                         Console.Clear();
-                        Console.WriteLine($"How much money would you like to transfer? (Enter value in {temporaryAccounts[fromAccountPosition - 1].Currency})");
+                        Console.CursorVisible = true;
+                        Console.WriteLine($"Currently there are no currency conversion fee\n\nHow much money would you like to transfer? (Enter value in {temporaryAccounts[fromAccountPosition - 1].Currency})");
                     }
+
+                    Console.CursorVisible = false;
 
                     if (amountToTransfer < 0)
                     {
