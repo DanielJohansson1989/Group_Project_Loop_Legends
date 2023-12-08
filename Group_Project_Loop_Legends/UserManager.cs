@@ -19,6 +19,9 @@ namespace Group_Project_Loop_Legends
             Customer c3 = new Customer("John", "passwordJ");
             Customer c4 = new Customer("Rasmus", "passwordR");
 
+            c4.authenticator = "Varberg";
+            c4.authQuestion = "What's the name of your hometown?";
+
             customerList.Add(c1);
             customerList.Add(c2);
             customerList.Add(c3);
