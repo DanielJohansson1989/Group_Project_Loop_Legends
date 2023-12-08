@@ -16,6 +16,7 @@ namespace Group_Project_Loop_Legends
         private List<Account> _accountList = new List<Account>();
         private List<string> _historyList = new List<string>();
         private double _credit = 0;
+        public string authenticator = "";
         public Customer(string _name, string _password) : base(_name, _password)
         {
         }
@@ -555,7 +556,7 @@ namespace Group_Project_Loop_Legends
             Console.WriteLine("    Settings");
             Console.ResetColor();
             Console.WriteLine("    Handle warning messeages");
-            Console.WriteLine("    Create a Two-Factor authentication");
+            Console.WriteLine("    Two-Factor authentication");
             Console.ResetColor();
 
             int cursorPos = 1;
@@ -597,7 +598,7 @@ namespace Group_Project_Loop_Legends
                     Console.WriteLine("Do you want a warning message if your balance exceeds 1000 kr?");
                     break;
                 case 2:
-                    
+                    //Two step authenticator
                     break;
             }
             Console.WriteLine("\nPress Enter to return to Menu.");
