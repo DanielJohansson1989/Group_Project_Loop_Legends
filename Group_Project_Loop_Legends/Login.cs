@@ -164,7 +164,7 @@ namespace Group_Project_Loop_Legends
                         }
                         else
                         {                            
-                            Console.WriteLine("\n\nTwo step authenticaton word: ");
+                            Console.WriteLine($"\n\n{uCheck.authQuestion}");
                             string authCheck = Console.ReadLine();
 
                             if(authCheck == uCheck.authenticator)
@@ -180,7 +180,7 @@ namespace Group_Project_Loop_Legends
                             else
                             {
                                 Console.ForegroundColor= ConsoleColor.Red;
-                                Console.WriteLine("Invalid authenticaton respons. . .");
+                                Console.WriteLine("Invalid authentication respons. . .");
                                 Console.ForegroundColor = ConsoleColor.White;
                                 Thread.Sleep(2500);
                             }

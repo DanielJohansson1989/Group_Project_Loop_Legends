@@ -17,6 +17,7 @@ namespace Group_Project_Loop_Legends
         private List<string> _historyList = new List<string>();
         private double _credit = 0;
         public string authenticator = "";
+        public string authQuestion = "";
         public Customer(string _name, string _password) : base(_name, _password)
         {
         }
@@ -598,8 +599,31 @@ namespace Group_Project_Loop_Legends
                     Console.WriteLine("Do you want a warning message if your balance exceeds 1000 kr?");
                     break;
                 case 2:
-                    //Two step authenticator
-                    break;
+                    string oldAuth = authenticator;
+                    (string auth, string aQuestion) = AuthenticationClass.AuthenticatorMethod(authenticator, authQuestion);
+                    authenticator = auth;
+                    authQuestion = aQuestion;
+
+                    if (authenticator != oldAuth && authenticator != "")
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("\nAuthenticator successfully updated . . .");
+                        Console.ResetColor();
+                    }
+                    else if (authenticator != oldAuth && authenticator == "")
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("Authenticator successfully removed . . .");
+                        Console.ResetColor();
+                    }
+                    else if (authenticator == oldAuth)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Authenticator did not update . . .");
+                        Console.ResetColor();
+                    }
+                    Thread.Sleep(2500);                    
+                    return;
             }
             Console.WriteLine("\nPress Enter to return to Menu.");
             Console.ReadLine();
