@@ -423,8 +423,8 @@ namespace Group_Project_Loop_Legends
                         withdrawAccount.Balance -= withdrawAmount;
                         depositAccount.Balance += depositAmount;
 
-                        senderHistory.Add($"{withdrawAccount.Currency} {withdrawAmount,-15:N2}withdrawn from       {withdrawAccount.AccountName, -23} {withdrawAccount.Currency} {withdrawAccount.Balance}");
-                        receiverHistory.Add($"{depositAccount.Currency} {depositAmount,-15:N2}deposited to         {depositAccount.AccountName, -23} {depositAccount.Currency} {depositAccount.Balance}");
+                        senderHistory.Add($"{withdrawAccount.Currency} {withdrawAmount,-15:N2}withdrawn from       {withdrawAccount.AccountName, -23} {withdrawAccount.Currency} {withdrawAccount.Balance:N2}");
+                        receiverHistory.Add($"{depositAccount.Currency} {depositAmount,-15:N2}deposited to         {depositAccount.AccountName, -23} {depositAccount.Currency} {depositAccount.Balance:N2}");
                         
                         //if (senderHistory != receiverHistory)
                         //{
@@ -530,7 +530,7 @@ namespace Group_Project_Loop_Legends
                 double balanceBeforeLoan = accountList[cursorPosition - 4].Balance;
                 accountList[cursorPosition - 4].Balance += CurrencyConverter.ConvertCurrency(bankLoan, accountList[cursorPosition - 4], wantLoan); ;
 
-                historyList.Add($"SEK {wantLoan, -15:N2}loaned into          {accountList[cursorPosition - 4].AccountName, -23} {accountList[cursorPosition - 4].Currency} {accountList[cursorPosition - 4].Balance}");
+                historyList.Add($"SEK {wantLoan, -15:N2}loaned into          {accountList[cursorPosition - 4].AccountName, -23} {accountList[cursorPosition - 4].Currency} {accountList[cursorPosition - 4].Balance:N2}");
                 
                 Console.WriteLine($"You have now loaned {wantLoan} SEK and inserted it into {accountList[cursorPosition - 4].AccountName}");
                 Console.WriteLine($"\nBalance before loan: {balanceBeforeLoan:N2} {accountList[cursorPosition - 4].Currency}");
