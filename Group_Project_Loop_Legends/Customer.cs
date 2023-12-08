@@ -17,6 +17,7 @@ namespace Group_Project_Loop_Legends
         private List<string> _historyList = new List<string>();
         private double _credit = 0;
         public string authenticator = "";
+        public string authQuestion = "";
         public Customer(string _name, string _password) : base(_name, _password)
         {
         }
@@ -598,7 +599,9 @@ namespace Group_Project_Loop_Legends
                     Console.WriteLine("Do you want a warning message if your balance exceeds 1000 kr?");
                     break;
                 case 2:
-                    //Two step authenticator
+                    (string auth, string aQuestion) = AuthenticationClass.AuthenticatorMethod(authenticator);
+                    authenticator = auth;
+                    authQuestion = aQuestion;
                     break;
             }
             Console.WriteLine("\nPress Enter to return to Menu.");
