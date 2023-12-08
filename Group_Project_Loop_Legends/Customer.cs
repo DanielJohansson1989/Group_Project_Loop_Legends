@@ -599,10 +599,25 @@ namespace Group_Project_Loop_Legends
                     Console.WriteLine("Do you want a warning message if your balance exceeds 1000 kr?");
                     break;
                 case 2:
+                    string oldAuth = authenticator;
                     (string auth, string aQuestion) = AuthenticationClass.AuthenticatorMethod(authenticator);
                     authenticator = auth;
                     authQuestion = aQuestion;
-                    break;
+
+                    if (authenticator != oldAuth)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("\nAuthenticator successfully updated. . .");
+                        Console.ResetColor();
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Authenticator did not update. . .");
+                        Console.ResetColor();
+                    }
+                    Thread.Sleep(2500);                    
+                    return;
             }
             Console.WriteLine("\nPress Enter to return to Menu.");
             Console.ReadLine();

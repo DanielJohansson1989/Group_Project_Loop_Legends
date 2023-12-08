@@ -118,6 +118,37 @@ namespace Group_Project_Loop_Legends
             //If authenticator already exists
             else
             {
+                Console.WriteLine("Authenticator detected.\n");
+                Console.WriteLine("     Change authenticator question");
+                Console.WriteLine("     Remove authenticator");
+
+                int cursorPos = 2;
+                Console.SetCursorPosition(0, cursorPos);
+                Console.CursorVisible = false;
+                Console.Write("-->");
+                ConsoleKeyInfo navigator;
+                do
+                {
+                    navigator = Console.ReadKey();
+                    Console.SetCursorPosition(0, cursorPos);
+                    Console.Write("   ");
+                    if (navigator.Key == ConsoleKey.UpArrow && cursorPos > 2)
+                    {
+                        cursorPos--;
+                    }
+                    else if (navigator.Key == ConsoleKey.DownArrow && cursorPos < 3)
+                    {
+                        cursorPos++;
+                    }
+                    Console.SetCursorPosition(0, cursorPos);
+                    Console.Write("-->");
+                } while (navigator.Key != ConsoleKey.Enter);
+
+                Console.Clear();
+                Console.CursorVisible = true;
+
+
+
                 return ("", "");
             }
             return ("", "");
