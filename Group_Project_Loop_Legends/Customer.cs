@@ -600,20 +600,26 @@ namespace Group_Project_Loop_Legends
                     break;
                 case 2:
                     string oldAuth = authenticator;
-                    (string auth, string aQuestion) = AuthenticationClass.AuthenticatorMethod(authenticator);
+                    (string auth, string aQuestion) = AuthenticationClass.AuthenticatorMethod(authenticator, authQuestion);
                     authenticator = auth;
                     authQuestion = aQuestion;
 
-                    if (authenticator != oldAuth)
+                    if (authenticator != oldAuth && authenticator != "")
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("\nAuthenticator successfully updated. . .");
+                        Console.WriteLine("\nAuthenticator successfully updated . . .");
                         Console.ResetColor();
                     }
-                    else
+                    else if (authenticator != oldAuth && authenticator == "")
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("Authenticator successfully removed . . .");
+                        Console.ResetColor();
+                    }
+                    else if (authenticator == oldAuth)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Authenticator did not update. . .");
+                        Console.WriteLine("Authenticator did not update . . .");
                         Console.ResetColor();
                     }
                     Thread.Sleep(2500);                    

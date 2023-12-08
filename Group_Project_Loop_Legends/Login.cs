@@ -180,7 +180,7 @@ namespace Group_Project_Loop_Legends
                             else
                             {
                                 Console.ForegroundColor= ConsoleColor.Red;
-                                Console.WriteLine("Invalid authenticaton respons. . .");
+                                Console.WriteLine("Invalid authentication respons. . .");
                                 Console.ForegroundColor = ConsoleColor.White;
                                 Thread.Sleep(2500);
                             }
