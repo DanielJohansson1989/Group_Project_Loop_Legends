@@ -152,13 +152,39 @@ namespace Group_Project_Loop_Legends
                     }
                     else
                     {
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("\n\nLogin successful . . .");
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Thread.Sleep(1500);
-                        TriesLeft = 3;
-                        uCheck.Menu(customerList);
-                        break;
+                        if (uCheck.authenticator == "")
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("\n\nLogin successful . . .");
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Thread.Sleep(1500);
+                            TriesLeft = 3;
+                            uCheck.Menu(customerList);
+                            break;
+                        }
+                        else
+                        {                            
+                            Console.WriteLine("\n\nTwo step authenticaton word: ");
+                            string authCheck = Console.ReadLine();
+
+                            if(authCheck == uCheck.authenticator)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.WriteLine("\nLogin successful . . .");
+                                Console.ForegroundColor = ConsoleColor.White;
+                                Thread.Sleep(1500);
+                                TriesLeft = 3;
+                                uCheck.Menu(customerList);
+                                break;
+                            }
+                            else
+                            {
+                                Console.ForegroundColor= ConsoleColor.Red;
+                                Console.WriteLine("Invalid authenticaton respons. . .");
+                                Console.ForegroundColor = ConsoleColor.White;
+                                Thread.Sleep(2500);
+                            }
+                        }
                     }
 
                 }
