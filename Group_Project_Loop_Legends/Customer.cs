@@ -110,7 +110,9 @@ namespace Group_Project_Loop_Legends
 
         public void SeeAccounts()
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Account Name             Balance        Currency\n");
+            Console.ResetColor();
             foreach (Account item in _accountList)
             {
                 item.PrintAccounts();
@@ -127,7 +129,9 @@ namespace Group_Project_Loop_Legends
         public void AddAccount()
         {
             Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Name of the account (max 23 characters):");
+            Console.ResetColor();
             Console.CursorVisible = true;
             string accountName = Console.ReadLine();
 
@@ -138,14 +142,18 @@ namespace Group_Project_Loop_Legends
             }
 
             Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("What currency would you like your account to have?");
+            Console.ResetColor();
             Console.WriteLine("\n     SEK\n     USD\n     EURO\n     GBP\n     JPY\n");
 
             int cursorPosition = 2;
 
             Console.SetCursorPosition(0, cursorPosition);
             Console.CursorVisible = false;
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write("-->");
+            Console.ResetColor();
             ConsoleKeyInfo navigator;
 
             do
@@ -165,7 +173,9 @@ namespace Group_Project_Loop_Legends
                 }
 
                 Console.SetCursorPosition(0, cursorPosition);
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.Write("-->");
+                Console.ResetColor();
             } while (navigator.Key != ConsoleKey.Enter);
             Console.Clear();
 
@@ -203,7 +213,9 @@ namespace Group_Project_Loop_Legends
         public void AccountHistory()
         {
             Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("SUM                ACTION               ACCOUNT                 BALANCE\n");
+            Console.ResetColor();
             foreach (string transaction in _historyList)
             {
                 Console.WriteLine(transaction);
@@ -221,8 +233,10 @@ namespace Group_Project_Loop_Legends
         public void TransferMoney(List<Customer> customerList, List<Account> accounts, List<string> historyList)
         {
             // Print menu of this users account to transfer from - only accounts with balance > 0 are visible
-
+            
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Select an account to transfer money FROM");
+            Console.ResetColor();
 
             List<Account> temporaryAccounts = new List<Account>();
 
@@ -251,7 +265,9 @@ namespace Group_Project_Loop_Legends
                 int fromAccountPosition = 1;
                 Console.SetCursorPosition(0, fromAccountPosition);
                 Console.CursorVisible = false;
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.Write("-->");
+                Console.ResetColor();
                 ConsoleKeyInfo navigator;
 
                 do
@@ -271,7 +287,9 @@ namespace Group_Project_Loop_Legends
                     }
 
                     Console.SetCursorPosition(0, fromAccountPosition);
+                    Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.Write("-->");
+                    Console.ResetColor();
                 } while (navigator.Key != ConsoleKey.Enter);
                 Console.Clear();
 
@@ -279,7 +297,9 @@ namespace Group_Project_Loop_Legends
 
                 List<Customer> recipients = new List<Customer>();
 
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("Select recipient");
+                Console.ResetColor();
 
                 foreach (Customer customer in customerList)
                 {
@@ -294,7 +314,9 @@ namespace Group_Project_Loop_Legends
 
                 int cursorPosition = 1;
                 Console.SetCursorPosition(0, cursorPosition);
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.Write("-->");
+                Console.ResetColor();
 
                 do
                 {
@@ -314,12 +336,16 @@ namespace Group_Project_Loop_Legends
                     }
 
                     Console.SetCursorPosition(0, cursorPosition);
+                    Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.Write("-->");
+                    Console.ResetColor();
                 } while (navigator.Key != ConsoleKey.Enter);
                 Console.Clear();
 
                 // Print recipient's available accounts
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("Select an account to transfer money TO");
+                Console.ResetColor();
 
                 foreach (Account account in recipients[cursorPosition - 1]._accountList)
                 {
@@ -329,7 +355,9 @@ namespace Group_Project_Loop_Legends
                 // Let user select an account
                 int toAccountPosition = 1;
                 Console.SetCursorPosition(0, toAccountPosition);
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.Write("-->");
+                Console.ResetColor();
 
                 do
                 {
@@ -348,7 +376,9 @@ namespace Group_Project_Loop_Legends
                     }
 
                     Console.SetCursorPosition(0, toAccountPosition);
+                    Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.Write("-->");
+                    Console.ResetColor();
                 } while (navigator.Key != ConsoleKey.Enter);
 
                 // Let user enter amount to transfer
@@ -459,11 +489,15 @@ namespace Group_Project_Loop_Legends
 
             if(maxLoan > 1)
             {
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine($"Based on your total assets ({totalAssetInSEK:N2} SEK) and your credit ({credit} SEK) you can loan up to {maxLoan:N2} SEK.");
+                Console.ResetColor();
 
                 while (true)
                 {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.Write("\nHow much do you want to loan? ");
+                    Console.ResetColor();
                     try
                     {
                         wantLoan = Convert.ToDouble(Console.ReadLine());
@@ -492,8 +526,10 @@ namespace Group_Project_Loop_Legends
                 }
 
                 Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine($"We currently have an interest rate of 4,9%. There will be a yearly fee of {wantLoan * 0.049:N2} SEK for your loan.\n");
                 Console.WriteLine("To which account do you want to insert the loan?\n");
+                Console.ResetColor();
 
                 foreach (Account account in accountList) // Possible improvement: also print out the balance and currency of the accounts
                 {
@@ -503,7 +539,9 @@ namespace Group_Project_Loop_Legends
 
                 Console.SetCursorPosition(0, cursorPosition);
                 Console.CursorVisible = false;
+                Console.ForegroundColor= ConsoleColor.Yellow;
                 Console.Write("-->");
+                Console.ResetColor();
 
                 do
                 {
@@ -522,7 +560,9 @@ namespace Group_Project_Loop_Legends
                     }
 
                     Console.SetCursorPosition(0, cursorPosition);
+                    Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.Write("-->");
+                    Console.ResetColor();
                 } while (navigator.Key != ConsoleKey.Enter);
 
                 Console.Clear();
@@ -533,8 +573,10 @@ namespace Group_Project_Loop_Legends
                 accountList[cursorPosition - 4].Balance += CurrencyConverter.ConvertCurrency(bankLoan, accountList[cursorPosition - 4], wantLoan); ;
 
                 historyList.Add($"SEK {wantLoan, -15:N2}loaned into          {accountList[cursorPosition - 4].AccountName, -23} {accountList[cursorPosition - 4].Currency} {accountList[cursorPosition - 4].Balance:N2}");
-                
+
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine($"You have now loaned {wantLoan} SEK and inserted it into {accountList[cursorPosition - 4].AccountName}");
+                Console.ResetColor();
                 Console.WriteLine($"\nBalance before loan: {balanceBeforeLoan:N2} {accountList[cursorPosition - 4].Currency}");
                 Console.WriteLine($"Balance after loan : {accountList[cursorPosition - 4].Balance:N2} {accountList[cursorPosition - 4].Currency}");
 
@@ -554,7 +596,7 @@ namespace Group_Project_Loop_Legends
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("    Settings");
+            Console.WriteLine("Settings");
             Console.ResetColor();
             Console.WriteLine("    Handle warning messeages");
             Console.WriteLine("    Two-Factor authentication");

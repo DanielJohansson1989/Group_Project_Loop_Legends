@@ -12,6 +12,7 @@ namespace Group_Project_Loop_Legends
         public static void LogIn(List<Customer> customerList, List<Admin> adminList)
         {
             Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("   __   ____  ____  ___    __   ______________  _____  ____  ___  ___   _  ____ __\r" +
                 "\n  / /  / __ \\/ __ \\/ _ \\  / /  / __/ ___/ __/ |/ / _ \\/ __/ / _ )/ _ | / |/ / //_/\r" +
                 "\n / /__/ /_/ / /_/ / ___/ / /__/ _// (_ / _//    / // /\\ \\  / _  / __ |/    / ,<   \r" +
@@ -19,6 +20,7 @@ namespace Group_Project_Loop_Legends
                 "\n                                                                                 ");
             Console.WriteLine("Welcome to the Loop Legends Bank\n");
             Console.WriteLine("What would you like to log in as? (user arrow keys to navigate, then press Enter)");
+            Console.ResetColor();
             Console.WriteLine("\n     Admin\n     Customer");
             if (TriesLeft == 0)
             {
@@ -30,7 +32,9 @@ namespace Group_Project_Loop_Legends
             int y = 9;           
             Console.SetCursorPosition(0, y);
             Console.CursorVisible = false;
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write("-->");
+            Console.ResetColor();
             ConsoleKeyInfo navigator;            
             do
             {
@@ -46,7 +50,9 @@ namespace Group_Project_Loop_Legends
                     y++;
                 }
                 Console.SetCursorPosition(0, y);
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.Write("-->");
+                Console.ResetColor();
             } while (navigator.Key != ConsoleKey.Enter);
 
             Console.Clear();

@@ -14,13 +14,17 @@ namespace Group_Project_Loop_Legends
             //No existing authenticator
             if (auth == "")
             {
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("No authenticator detected.\nDo you want to setup an authenticator?");
+                Console.ResetColor();
                 Console.WriteLine("\n     Yes \n     No");
 
                 int cursorPos = 3;
                 Console.SetCursorPosition(0, cursorPos);
                 Console.CursorVisible = false;
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.Write("-->");
+                Console.ResetColor();
                 ConsoleKeyInfo navigator;
                 do
                 {
@@ -36,7 +40,9 @@ namespace Group_Project_Loop_Legends
                         cursorPos++;
                     }
                     Console.SetCursorPosition(0, cursorPos);
+                    Console.ForegroundColor= ConsoleColor.Yellow;
                     Console.Write("-->");
+                    Console.ResetColor();
                 } while (navigator.Key != ConsoleKey.Enter);
 
                 Console.Clear();
@@ -44,8 +50,10 @@ namespace Group_Project_Loop_Legends
 
                 if (cursorPos == 3)
                 {
-                    Console.Clear();                    
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("Choose authenticator question:");
+                    Console.ResetColor();
                     Console.WriteLine("\n     What's your favourite resturant?");
                     Console.WriteLine("     What's the name of your hometown?");
                     Console.WriteLine("     What's the name of your mother?");
@@ -55,7 +63,9 @@ namespace Group_Project_Loop_Legends
                     cursorPos = 2;
                     Console.SetCursorPosition(0, cursorPos);
                     Console.CursorVisible = false;
+                    Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.Write("-->");
+                    Console.ResetColor();
                     //ConsoleKeyInfo navigator;
                     do
                     {
@@ -71,7 +81,9 @@ namespace Group_Project_Loop_Legends
                             cursorPos++;
                         }
                         Console.SetCursorPosition(0, cursorPos);
+                        Console.ForegroundColor= ConsoleColor.Yellow;
                         Console.Write("-->");
+                        Console.ResetColor();
                     } while (navigator.Key != ConsoleKey.Enter);
 
                     Console.Clear();
@@ -119,7 +131,9 @@ namespace Group_Project_Loop_Legends
             //If authenticator already exists
             else
             {
-                Console.WriteLine("Authenticator detected.\n");                
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Authenticator detected.\n");
+                Console.ResetColor();
                 Console.WriteLine("     Change authenticator question");
                 Console.WriteLine("     Remove authenticator");
                 Console.WriteLine("     Back to menu");
@@ -127,7 +141,9 @@ namespace Group_Project_Loop_Legends
                 int cursorPos = 2;
                 Console.SetCursorPosition(0, cursorPos);
                 Console.CursorVisible = false;
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.Write("-->");
+                Console.ResetColor();
                 ConsoleKeyInfo navigator;
                 do
                 {
@@ -143,7 +159,9 @@ namespace Group_Project_Loop_Legends
                         cursorPos++;
                     }
                     Console.SetCursorPosition(0, cursorPos);
+                    Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.Write("-->");
+                    Console.ResetColor();
                 } while (navigator.Key != ConsoleKey.Enter);
 
                 Console.Clear();
@@ -164,7 +182,9 @@ namespace Group_Project_Loop_Legends
                         Thread.Sleep(1500);
 
                         Console.Clear();
+                        Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.WriteLine("Choose authenticator question:");
+                        Console.ResetColor();
                         Console.WriteLine("\n     What's your favourite resturant?");
                         Console.WriteLine("     What's the name of your hometown?");
                         Console.WriteLine("     What's the name of your mother?");
@@ -174,7 +194,9 @@ namespace Group_Project_Loop_Legends
                         cursorPos = 2;
                         Console.SetCursorPosition(0, cursorPos);
                         Console.CursorVisible = false;
+                        Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.Write("-->");
+                        Console.ResetColor();
                         //ConsoleKeyInfo navigator;
                         do
                         {
@@ -190,7 +212,9 @@ namespace Group_Project_Loop_Legends
                                 cursorPos++;
                             }
                             Console.SetCursorPosition(0, cursorPos);
+                            Console.ForegroundColor = ConsoleColor.Yellow;
                             Console.Write("-->");
+                            Console.ResetColor();
                         } while (navigator.Key != ConsoleKey.Enter);
 
                         Console.Clear();
