@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace Group_Project_Loop_Legends
 {
@@ -21,6 +22,7 @@ namespace Group_Project_Loop_Legends
             Console.WriteLine("    Set New Currency");
             Console.WriteLine("    Create New Customer");
             Console.WriteLine("    See Total Assets");
+            Console.WriteLine("    See All Transactions");
             Console.WriteLine("    Log Out");
 
             int cursorPos = 1;
@@ -43,7 +45,7 @@ namespace Group_Project_Loop_Legends
                     cursorPos--;
                 }
 
-                else if (navigator.Key == ConsoleKey.DownArrow && cursorPos < 4)
+                else if (navigator.Key == ConsoleKey.DownArrow && cursorPos < 5)
                 {
                     cursorPos++;
                 }
@@ -109,6 +111,10 @@ namespace Group_Project_Loop_Legends
                     Menu();
                     break;
                 case 4:
+                    SeeAllTransactions();
+                    Menu();
+                    break;
+                case 5:
                     LogOut();
                     break;
             }
@@ -242,6 +248,31 @@ namespace Group_Project_Loop_Legends
 
             Console.WriteLine("\nPress Enter to return to Menu");
             Console.ReadKey();
+        }
+
+        public static void SeeAllTransactions()
+        {
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("All Transactions and Loans");
+            Console.ResetColor();
+
+            foreach (Customer customer in UserManager.customerList)
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine($"\nTransactions and Loans for {customer._name}:");
+                Console.ResetColor();
+                foreach(string transaction in customer._historyList)
+                {
+                    Console.WriteLine(transaction);
+                    Console.WriteLine("-");
+                }
+            }
+
+            Console.WriteLine("\nPress Enter to return to Menu");
+            Console.ReadKey();
+
+            
         }
 
         public static void LogOut()

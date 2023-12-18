@@ -14,7 +14,7 @@ namespace Group_Project_Loop_Legends
     internal class Customer : User
     {
         private List<Account> _accountList = new List<Account>();
-        private List<string> _historyList = new List<string>();
+        public List<string> _historyList = new List<string>(); // Changed from private to public /AH
         private double _credit = 0;
         public string authenticator = "";
         public string authQuestion = "";
@@ -598,7 +598,7 @@ namespace Group_Project_Loop_Legends
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Settings");
             Console.ResetColor();
-            Console.WriteLine("    Handle warning messeages");
+            Console.WriteLine("    Handle warning messages");
             Console.WriteLine("    Two-Factor authentication");
             Console.ResetColor();
 
