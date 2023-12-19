@@ -18,12 +18,13 @@ namespace Group_Project_Loop_Legends
         private double _credit = 0;
         public string authenticator = "";
         public string authQuestion = "";
+        public double warningBalance = 0;
         public Customer(string _name, string _password) : base(_name, _password)
         {
         }
         public void Menu(List<Customer> customerList)
         {
-            bool isRunning = true;
+            bool isRunning = true;            
 
             while (isRunning)
             {
@@ -40,8 +41,12 @@ namespace Group_Project_Loop_Legends
                 Console.WriteLine("    Settings");
                 Console.WriteLine("    Log Out");
 
-                int cursorPos = 1;
+                Console.ForegroundColor = ConsoleColor.Red;
+                string warningCheck = WarningMessageCheck(_accountList);
+                Console.WriteLine("\n"+warningCheck);
+                Console.ResetColor();
 
+                int cursorPos = 1;
 
                 Console.SetCursorPosition(0, cursorPos);
                 Console.CursorVisible = false;
@@ -598,7 +603,7 @@ namespace Group_Project_Loop_Legends
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Settings");
             Console.ResetColor();
-            Console.WriteLine("    Handle warning messages");
+            Console.WriteLine("    Handle warning message");
             Console.WriteLine("    Two-Factor authentication");
             Console.ResetColor();
 
@@ -638,8 +643,8 @@ namespace Group_Project_Loop_Legends
             switch (cursorPos)
             {
                 case 1:
-                    Console.WriteLine("Do you want a warning message if your balance exceeds 1000 kr?");
-                    break;
+                    WarningMethod();
+                    return;
                 case 2:
                     string oldAuth = authenticator;
                     (string auth, string aQuestion) = AuthenticationClass.AuthenticatorMethod(authenticator, authQuestion);
@@ -704,6 +709,100 @@ namespace Group_Project_Loop_Legends
         public List<Account> AccountList 
         { 
             get { return _accountList; }
+        }
+
+        public void WarningMethod()
+        {
+            if (warningBalance == 0)
+            {
+                Console.Clear();
+                Console.WriteLine("No warning message found\nAt what total balance in SEK do you want your warning message?" +
+                    "\n(Enter 0 for no warning message)");
+                try
+                {
+                    warningBalance = Convert.ToDouble(Console.ReadLine());
+                }
+                catch
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Please write a number . . .");
+                    Console.ResetColor();
+                    Thread.Sleep(1500);
+                    WarningMethod();
+                }
+                return;
+            }
+            else
+            {
+                Console.WriteLine($"Warning message already exists, it is at {warningBalance} SEK." +
+                    "\nDo you want to remove your warning message?");
+                Console.WriteLine("    Yes");
+                Console.WriteLine("    No");
+                Console.ResetColor();
+
+                int cursorPos = 2;
+
+
+                Console.SetCursorPosition(0, cursorPos);
+                Console.CursorVisible = false;
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.Write("-->");
+                Console.ResetColor();
+                ConsoleKeyInfo navigator;
+
+                do
+                {
+                    navigator = Console.ReadKey();
+                    Console.SetCursorPosition(0, cursorPos);
+                    Console.Write("   ");
+
+                    if (navigator.Key == ConsoleKey.UpArrow && cursorPos > 2)
+                    {
+                        cursorPos--;
+                    }
+
+                    else if (navigator.Key == ConsoleKey.DownArrow && cursorPos < 3)
+                    {
+                        cursorPos++;
+                    }
+
+                    Console.SetCursorPosition(0, cursorPos);
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.Write("-->");
+                    Console.ResetColor();
+                } while (navigator.Key != ConsoleKey.Enter);
+
+                Console.Clear();
+                switch (cursorPos)
+                {
+                    case 2:
+                        Console.WriteLine("Removing warning message . . .");
+                        warningBalance = 0;
+                        Thread.Sleep(1500);
+                        Console.ForegroundColor= ConsoleColor.Green;
+                        Console.WriteLine("Warning message successfully removed . . .");
+                        Thread.Sleep(1500);
+                        Console.ResetColor();
+                        return;
+                    case 3:
+                        Console.WriteLine("Warning message still in effect, returning to menu . . .");
+                        Thread.Sleep(2500);
+                        return;
+                }
+            }
+        }
+        public string WarningMessageCheck(List<Account> accountList)
+        {
+            double totalBalance = CurrencyConverter.TotalAsset(accountList);
+            
+            if (warningBalance > totalBalance)
+            {
+                return $"Warning your current balance is below {warningBalance}";
+            }
+            else
+            {
+                return "";
+            }
         }
     }
 }
