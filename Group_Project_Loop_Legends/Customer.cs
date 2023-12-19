@@ -791,7 +791,7 @@ namespace Group_Project_Loop_Legends
             
             if (warningBalance > totalBalance)
             {
-                return $"Warning your current balance is below {warningBalance}";
+                return $"Warning your current balance is below {warningBalance} SEK";
             }
             else
             {
