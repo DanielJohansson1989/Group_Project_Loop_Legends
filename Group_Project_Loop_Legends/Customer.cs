@@ -453,7 +453,7 @@ namespace Group_Project_Loop_Legends
 
             DateTime minutes = DateTime.Now;
 
-                if (minutes.Minute % 5 == 0)
+                if (minutes.Minute % 15 == 0)
                 {
                     if (withdrawAccount.Balance - withdrawAmount >= 0)
                     {
@@ -462,12 +462,6 @@ namespace Group_Project_Loop_Legends
 
                         senderHistory.Add($"{withdrawAccount.Currency} {withdrawAmount,-15:N2}withdrawn from       {withdrawAccount.AccountName, -23} {withdrawAccount.Currency} {withdrawAccount.Balance:N2}");
                         receiverHistory.Add($"{depositAccount.Currency} {depositAmount,-15:N2}deposited to         {depositAccount.AccountName, -23} {depositAccount.Currency} {depositAccount.Balance:N2}");
-                        
-                        //if (senderHistory != receiverHistory)
-                        //{
-                        //    receiverHistory.Add($"{withdrawAccount.Currency} {withdrawAmount,-15:N2}withdrawn from       {withdrawAccount.AccountName}");
-                        //    receiverHistory.Add($"{depositAccount.Currency} {depositAmount,-15:N2}deposited to         {depositAccount.AccountName}");
-                        //}
                     }
 
                     else
