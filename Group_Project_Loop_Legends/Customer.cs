@@ -14,7 +14,7 @@ namespace Group_Project_Loop_Legends
     internal class Customer : User
     {
         private List<Account> _accountList = new List<Account>();
-        public List<string> _historyList = new List<string>(); // Changed from private to public /AH
+        public List<string> _historyList = new List<string>(); 
         private double _credit = 0;
         public string authenticator = "";
         public string authQuestion = "";

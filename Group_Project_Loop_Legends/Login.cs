@@ -65,8 +65,7 @@ namespace Group_Project_Loop_Legends
                     Console.Clear();
                     Console.Write("Username: ");
                     string username = Console.ReadLine();
-                    Console.Write("Password: ");
-                    //string password = Console.ReadLine();
+                    Console.Write("Password: ");                    
 
                     //making char to '*'
                     string password = string.Empty;
@@ -121,7 +120,6 @@ namespace Group_Project_Loop_Legends
                     Console.Write("Username: ");
                     string username = Console.ReadLine();
                     Console.Write("Password: ");
-                    //string password = Console.ReadLine();
 
                     //making char to '*'
                     string password = string.Empty;

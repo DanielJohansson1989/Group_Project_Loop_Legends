@@ -9,7 +9,7 @@ namespace Group_Project_Loop_Legends
 {
     internal class CurrencyConverter
     {
-        public static double _sekRate = 1;  //Changed from private to public /AH
+        public static double _sekRate = 1;  
         public static double _usdRate = 0.096;
         public static double _euroRate = 0.088;
         public static double _gbpRate = 0.076;
