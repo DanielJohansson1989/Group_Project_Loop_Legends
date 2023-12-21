@@ -46,7 +46,7 @@ This class handles the extra security of the log in method that the user can cho
 
 SPECIAL FEATURES
 
-Manu Arrow
+Menu Arrow
 The usual console application navigation solution is having the user press a number for each menu choice. Like "Press 1 to Create new Account" or "Press 6 to Log out". But we are using an arrow, pointing at the diffirent selections available for the user, navigating the arrow with the arrow keys. It's easy to comprehend, easy to use, and can not break because of incorrect user input.
 
 Delayed Transaction<br>

@@ -90,8 +90,7 @@ namespace Group_Project_Loop_Legends
                         break;
 
                     default:
-                        // Throw new exception something "no valid currency admitted".
-                        break;
+                        throw new ArgumentException("Error in adding all assets of customer accounts.");
                 }
             }
             return totalAssetValue * _sekRate;
